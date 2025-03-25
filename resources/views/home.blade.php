@@ -13,10 +13,12 @@
         {{-- google fornt 2  --}}
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         @vite('resources/css/app.css')
+        {{-- shiper js  --}}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     </head>
     <body class="font-sans antialiased">
-       <section class="container mx-auto mt-2  border flex ">
+       <section class="container mx-auto mt-2   flex ">
         <nav class="w-full">
             <div class="flex w-full justify-between">
                 <div class="flex bg-amber-2000 items-center">
@@ -122,6 +124,59 @@
             </div>
         </nav>
        </section>
+       <section class="bg-[#282A35]">
+                   {{-- top bar  --}}
+       {{-- swiper js start  --}}
+   <div class="swiper container cursor-pointer  bg-[#282A35]">
+    <div class="swiper-wrapper py-1">
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">HTML</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">CSS</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">JAVASCRIPT</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">SQL</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">PYTHON</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">JAVA</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">PHP</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">HOW TO</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">W3.CSS</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">C</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">C++</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">C#</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">BOOTSTRAP</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">REACT</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">MYSQL</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">JQUERY</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">EXCEL</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">XML</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">DJANGO</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">NUMPY</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">PANDAS</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">NODEJS</span></div>
+    </div>
+
+         <!-- Add next and previous buttons -->
+            <div class="absolute swiper-button-next "></div>
+            <div class="absolute swiper-button-prev"></div>
+
+           {{-- swiper js end --}}
+    </div>
+       </section>
+
+
+       <!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+       <!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".swiper", {
+        slidesPerView: "auto",
+        spaceBetween: 10,
+        freeMode: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+
+    });
+</script>
     </body>
 </html>
 
