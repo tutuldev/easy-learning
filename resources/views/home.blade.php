@@ -129,7 +129,7 @@
        {{-- swiper js start  --}}
    <div class="swiper container cursor-pointer  bg-[#282A35]">
     <div class="swiper-wrapper py-1">
-        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">HTML</span></div>
+        <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm ">HTML</span></div>
         <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">CSS</span></div>
         <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">JAVASCRIPT</span></div>
         <div class="swiper-slide !w-auto"><span class="px-4 py-2 hover:bg-black text-white  text-sm">SQL</span></div>
@@ -154,8 +154,16 @@
     </div>
 
          <!-- Add next and previous buttons -->
-            <div class="absolute swiper-button-next "></div>
-            <div class="absolute swiper-button-prev"></div>
+            {{-- <div class="absolute swiper-button-next "></div>
+            <div class="absolute swiper-button-prev"></div> --}}
+            <!-- Swiper Default Buttons (with Material Icons) -->
+<div class="absolute swiper-button-prev !left-0 bg-black">
+    <span class="material-icons text-white text-sm ">chevron_left</span>
+</div>
+<div class="absolute swiper-button-next !right-0 bg-black">
+    <span class="material-icons text-white text-sm ">chevron_right</span>
+</div>
+
 
            {{-- swiper js end --}}
     </div>
@@ -166,16 +174,43 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
        <!-- Initialize Swiper -->
 <script>
-    var swiper = new Swiper(".swiper", {
-        slidesPerView: "auto",
-        spaceBetween: 10,
-        freeMode: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
+var swiper = new Swiper(".swiper", {
+    slidesPerView: "auto",
+    spaceBetween: 10,
+    freeMode: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    on: {
+        init: function () {
+            updateNavButtons(this);
         },
+        slideChange: function () {
+            updateNavButtons(this);
+        }
+    }
+});
 
-    });
+function updateNavButtons(swiper) {
+    let prevBtn = document.querySelector(".swiper-button-prev");
+    let nextBtn = document.querySelector(".swiper-button-next");
+
+    // প্রথমে থাকলে "Previous" বাটন পুরোপুরি লুকিয়ে দিন
+    if (swiper.isBeginning) {
+        prevBtn.classList.add("hidden");
+    } else {
+        prevBtn.classList.remove("hidden");
+    }
+
+    // শেষ হলে "Next" বাটন পুরোপুরি লুকিয়ে দিন
+    if (swiper.isEnd) {
+        nextBtn.classList.add("hidden");
+    } else {
+        nextBtn.classList.remove("hidden");
+    }
+}
+
 </script>
     </body>
 </html>
