@@ -21,7 +21,7 @@
 </head>
 
 <body class="font-sans antialiased">
-    {{-- nav bar  --}}
+    {{-- nav bar start --}}
     <section class="fixed top-0 left-0 w-full bg-white shadow-lg z-50">
         <nav class="w-full container mx-auto  flex ">
             <div class="flex w-full justify-between">
@@ -141,10 +141,12 @@
             </div>
         </nav>
     </section>
-    {{-- top bar  --}}
-    <section class="bg-[#282A35] fixed mt-16 left-0 w-full z-40">
+    {{-- nav bar end --}}
+
+    {{-- top bar start --}}
+    <section class="bg-[#261F1E] fixed mt-15 left-0 w-full z-40">
         {{-- swiper js start  --}}
-        <div class="swiper container cursor-pointer  bg-[#282A35]">
+        <div class="swiper container cursor-pointer ">
             <div class="swiper-wrapper py-1">
                 <div class="swiper-slide !w-auto"><span
                         class="px-4 py-2 hover:bg-black text-white  text-sm ">HTML</span></div>
@@ -204,8 +206,27 @@
             </div>
         </div>
     </section>
+    {{-- top bar end  --}}
 
-    <div class="py-96"></div>
+    {{-- banner section start  --}}
+    <section class="banner relative">
+        <img src="{{ asset('image/banner.png') }}" alt="Banner Image" class="w-full h-[90vh]">
+
+        <!-- Centered Text -->
+        <div class="absolute inset-0 flex flex-col gap-4 items-center justify-center text-center ">
+            <h1 class="text-white text-6xl font-bold">Learn to Code</h1>
+            <h4 class="text-yellow-600 text-xl font-bold mt-4">With the world's largest web developer site.</h4>
+            <div class="relative w-full max-w-lg my-2">
+                <input type="text" placeholder="Search our tutorials, e.g. HTML"
+                    class="w-full h-10 bg-white px-5 py-6 pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button class="absolute inset-y-0 right-0 bg-green-500 flex items-center justify-center rounded-r-full h-full px-4">
+                    <span class="material-icons text-white text-xl cursor-pointer">search</span>
+                </button>
+            </div>
+            <h4 class="text-white underline text-xl font-bold mt-2">Not Sure Where To Begin?</h4>
+        </div>
+    </section>
+    {{-- banner section end --}}
     <div class="py-96"></div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
