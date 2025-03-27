@@ -213,20 +213,72 @@
         <img src="{{ asset('image/banner.png') }}" alt="Banner Image" class="w-full h-[90vh]">
 
         <!-- Centered Text -->
-        <div class="absolute inset-0 flex flex-col gap-4 items-center justify-center text-center ">
-            <h1 class="text-white text-6xl font-bold">Learn to Code</h1>
-            <h4 class="text-yellow-600 text-xl font-bold mt-4">With the world's largest web developer site.</h4>
-            <div class="relative w-full max-w-lg my-2">
+        <div class="absolute inset-0 flex flex-col gap-4 items-center justify-center text-center px-4">
+            <h1 class="text-white text-4xl sm:text-5xl md:text-6xl font-bold">Learn to Code</h1>
+            <h4 class="text-yellow-600 text-lg sm:text-xl font-bold mt-2 sm:mt-4">With the world's largest web developer site.</h4>
+            <div class="relative w-full max-w-md sm:max-w-lg my-2">
                 <input type="text" placeholder="Search our tutorials, e.g. HTML"
-                    class="w-full h-10 bg-white px-5 py-6 pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                <button class="absolute inset-y-0 right-0 bg-green-500 flex items-center justify-center rounded-r-full h-full px-4">
-                    <span class="material-icons text-white text-xl cursor-pointer">search</span>
+                    class="w-full h-8 sm:h-10 bg-white px-4 py-5 sm:py-6 pr-10 sm:pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                <button class="absolute inset-y-0 right-0 bg-green-500 flex items-center justify-center rounded-r-full h-full px-3 sm:px-4">
+                    <span class="material-icons text-white text-lg sm:text-xl cursor-pointer">search</span>
                 </button>
             </div>
-            <h4 class="text-white underline text-xl font-bold mt-2">Not Sure Where To Begin?</h4>
+            <h4 class="text-white underline text-lg sm:text-xl font-bold mt-2">Not Sure Where To Begin?</h4>
         </div>
+
     </section>
     {{-- banner section end --}}
+    {{-- html learn seaction  --}}
+    <section class="html-learn-section mt-[-90px]">
+        <div class="pb-16 pt-32 bg-[#D9EEE1] flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-20">
+            <div class="html-nav text-center">
+                <h2 class="text-7xl font-bold">HTML</h2>
+                <p class="font-semibold text-xl">The language for building web pages</p>
+
+                <!-- Button Section -->
+                <div class="flex flex-col items-center space-y-4 mt-4">
+                    <a href="#" class="rounded-full text-white bg-green-500 px-7 py-3 min-w-[280px] max-w-[350px] text-center">Learn HTML</a>
+                    <a href="#" class="rounded-full bg-orange-300 px-7 py-3 min-w-[280px] max-w-[350px] text-center">Video Tutorials</a>
+                    <a href="#" class="rounded-full text-white bg-black px-7 py-3 min-w-[280px] max-w-[350px] text-center">HTML Reference</a>
+                    <a href="#" class="rounded-full bg-pink-400 px-7 py-3 min-w-[280px] max-w-[350px] text-center">Get Certified</a>
+                </div>
+            </div>
+
+            <!-- HTML Editor Section -->
+            <div class="html-editor sm:flex items-center justify-center hidden">
+                <div class="w-96  bg-gray-200 rounded-lg shadow-2xl  px-5">
+                    <h3 class="text-xl font-bold py-5">HTML Example:</h3>
+                    <div class="border-l-4 border-green-400 p-2 bg-white">
+<pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;HTML Tutorial&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h1&gt;This is a heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+                    </div>
+                    <a href="#" class="bg-green-500 px-10 py-3 rounded-full inline-block text-sm font-bold my-5 text-white">Try it Yourself</a>
+
+                </div>
+                <div class="code">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
     <div class="py-96"></div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
