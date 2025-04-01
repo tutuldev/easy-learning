@@ -230,10 +230,10 @@
     {{-- banner section end --}}
     {{-- html learn seaction  --}}
     <section class="html-learn-section mt-[-90px]">
-        <div class="pb-16 pt-32 bg-[#D9EEE1] flex flex-col md:flex-row justify-center space-y-10 md:space-y-0 md:space-x-20">
+        <div class="pb-16 pt-32 bg-[#D9EEE1] flex flex-col md:flex-row justify-center items-center space-y-10 md:space-y-0 md:space-x-20">
             <div class="html-nav text-center">
                 <h2 class="text-7xl font-bold">HTML</h2>
-                <p class="font-semibold text-xl">The language for building web pages</p>
+                <p class="font-semibold mb-5 mt-8">The language for building web pages</p>
 
                 <!-- Button Section -->
                 <div class="flex flex-col items-center space-y-4 mt-4">
@@ -275,11 +275,57 @@
         </div>
     </section>
 
+    {{-- learn css section --}}
+    <section class="html-learn-section ">
+        <div class="py-10 bg-[#FFF4A3] flex flex-col md:flex-row justify-center items-center space-y-10 md:space-y-0 md:space-x-20">
+            <div class="css-nav text-center">
+                <h2 class="text-7xl font-bold">CSS</h2>
+                <p class="font-semibold mb-5 mt-8">The language for styling web pages</p>
+
+                <!-- Button Section -->
+                <div class="flex flex-col items-center space-y-4 mt-4">
+                    <a href="#" class="rounded-full text-white bg-green-500 px-7 py-3 min-w-[280px] max-w-[350px] text-center">Learn CSS</a>
+                    <a href="#" class="rounded-full bg-orange-300 px-7 py-3 min-w-[280px] max-w-[350px] text-center">CSS Reference</a>
+                    <a href="#" class="rounded-full text-white bg-black px-7 py-3 min-w-[280px] max-w-[350px] text-center">Get Certified</a>
+                </div>
+            </div>
+
+            <!-- css Editor Section -->
+            <div class="css-editor sm:flex items-center justify-center hidden">
+                <div class="w-96  bg-gray-200 rounded-lg shadow-2xl  px-5">
+                    <h3 class="text-xl font-bold py-5">CSS Example:</h3>
+                    <div class="border-l-4 border-green-400 p-2 bg-white">
+<pre>
+&lt;style&gt;
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+}
+&lt;/style&gt;
+</pre>
+
+
+                    </div>
+                    <a href="#" class="bg-green-500 px-10 py-3 rounded-full inline-block text-sm font-bold my-5 text-white">Try it Yourself</a>
+
+                </div>
+                <div class="code">
+
+                </div>
+            </div>
+        </div>
+    </section>
 
 
 
-
-    <div class="py-96"></div>
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
