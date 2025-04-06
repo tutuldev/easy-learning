@@ -144,7 +144,7 @@
     {{-- nav bar end --}}
 
     {{-- top bar start --}}
-    <section class="bg-[#261F1E] fixed mt-15 left-0 w-full z-40">
+    <section class="bg-[#261F1E] fixed mt-16 left-0 w-full z-40">
         {{-- swiper js start  --}}
         <div class="swiper container cursor-pointer ">
             <div class="swiper-wrapper py-1">
