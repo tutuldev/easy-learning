@@ -2,19 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-.swiper-button-prev,
-.swiper-button-next {
 
-}
-
-
-.swiper-button-prev::after,
-.swiper-button-next::after {
-    display: none;
-}
-
-.swiper-button-prev.hidden,
-.swiper-button-next.hidden {
-    display: none; /* পুরোপুরি লুকিয়ে ফেলবে */
-}
 

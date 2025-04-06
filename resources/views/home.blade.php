@@ -9,12 +9,12 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     {{-- google front 1  --}}
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=arrow_drop_down" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
     {{-- google fornt 2  --}}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> --}}
     @vite('resources/css/app.css')
+    @vite('resources/css/custom.css')
     {{-- shiper js  --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -85,56 +85,67 @@
                     </ul>
                     {{-- menu  --}}
                     <div class="menu  2xl:hidden">
-                        <span class="material-icons cursor-pointer">menu</span>
+                        <span class="material-symbols-outlined text-2xl text-gray-700 cursor-pointer hover:text-blue-500 transition">menu</span>
+
                     </div>
                     <div class="relative ml-5">
                         <input type="text" placeholder="Search..."
                             class="w-48 xl:w-full h-10 px-4 pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
                         <button class="absolute inset-y-0 right-3 flex items-center">
-                            <span class="material-icons text-gray-500 text-xl cursor-pointer">search</span>
+                            <span class="material-symbols-outlined text-gray-500 text-xl cursor-pointer">search</span>
                         </button>
                     </div>
 
                 </div>
                 <div class="action flex space-x-5 bg-green-2000 items-center">
                     <div class="dark mood ml-5">
-                        <span class="material-icons cursor-pointer">brightness_6</span>
+                        <span class="material-symbols-outlined cursor-pointer">brightness_6</span>
                     </div>
                     <ul class="hidden 2xl:flex space-x-5">
                         <li class="cursor-pointer flex items-center">
                             <a href="#" class="flex items-center">
-                                <span class="material-icons mr-2">credit_card</span> Plus
+                                <span class="material-symbols-outlined mr-2">credit_card</span>
+                                 Plus
                             </a>
                         </li>
                         <li class="cursor-pointer flex items-center">
                             <a href="#" class="flex items-center">
-                                <span class="material-icons mr-2">code</span> Spaces
-                            </a>
-                        </li>
-                        <li class="cursor-pointer flex items-center">
-
-                            <a href="#" class="flex items-center">
-                                <span class="material-icons mr-2">school</span> For Teachers
+                                <span class="material-symbols-outlined mr-2">code</span>
+                                Spaces
                             </a>
                         </li>
                         <li class="cursor-pointer flex items-center">
 
                             <a href="#" class="flex items-center">
-                                <span class="material-icons mr-2">shopping_cart</span> Get Certified
+                                <span class="material-symbols-outlined mr-2">school</span>
+                                 For Teachers
+                            </a>
+                        </li>
+                        <li class="cursor-pointer flex items-center">
+
+                            <a href="#" class="flex items-center">
+                                <span class="material-symbols-outlined mr-2">shopping_cart</span>
+                                 Get Certified
                             </a>
 
                         </li>
                     </ul>
-                    <div class="authentication  flex space-x-2">
-                        <button
-                            class="py-2 px-8 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer hidden sm:block">
-                            Sign Up
-                        </button>
+                    <div class="authentication">
+                        <div class="hidden space-x-2 sm:flex">
+                            <button
+                                class="py-2 px-8 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer hidden sm:block">
+                                Sign Up
+                            </button>
 
-                        <button
-                            class="py-2 px-8 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 cursor-pointer">
-                            Log in
-                        </button>
+                            <button
+                                class="py-2 px-8 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 cursor-pointer">
+                                Log in
+                            </button>
+                        </div>
+                        <div class="sm:hidden block mx-5">
+                            <span class="material-symbols-outlined text-2xl text-gray-700 cursor-pointer hover:text-blue-500 transition">person</span>
+
+                        </div>
 
                     </div>
                 </div>
@@ -144,7 +155,7 @@
     {{-- nav bar end --}}
 
     {{-- top bar start --}}
-    <section class="bg-[#261F1E] fixed mt-16 left-0 w-full z-40">
+    <section class="bg-[#261F1E] fixed mt-14 left-0 w-full z-40 py-1">
         {{-- swiper js start  --}}
         <div class="swiper container cursor-pointer ">
             <div class="swiper-wrapper py-1">
@@ -199,10 +210,10 @@
                         <div class="absolute swiper-button-prev"></div> --}}
             <!-- Swiper Default Buttons (with Material Icons) -->
             <div class="absolute swiper-button-prev !left-0 bg-black">
-                <span class="material-icons text-white text-sm ">chevron_left</span>
+                <span class="material-symbols-outlined text-white text-sm">chevron_left</span>
             </div>
             <div class="absolute swiper-button-next !right-0 bg-black">
-                <span class="material-icons text-white text-sm ">chevron_right</span>
+                <span class="material-symbols-outlined text-white text-sm">chevron_right</span>
             </div>
         </div>
     </section>
