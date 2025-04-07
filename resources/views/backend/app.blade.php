@@ -26,7 +26,7 @@
        @include('backend.layouts.topbar')
         <!-- Content -->
         <main class="flex-1 p-6 pt-20 overflow-y-auto">
-           @yield('content')
+        @yield('content')
         </main>
       </div>
     </div>

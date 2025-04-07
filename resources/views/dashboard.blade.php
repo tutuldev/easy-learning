@@ -1,4 +1,4 @@
-@extends('backend.layouts.app')
+@extends('backend.app')
 @section('content')
 <h2 class="text-2xl font-semibold mb-6">Welcome Back!</h2>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
