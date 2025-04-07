@@ -25,7 +25,7 @@
         <!-- Fixed Top Navbar -->
        @include('backend.layouts.topbar')
         <!-- Content -->
-        <main class="flex-1 p-6 pt-20 overflow-y-auto">
+        <main class="p-6 pt-20 ">
         @yield('content')
         </main>
       </div>

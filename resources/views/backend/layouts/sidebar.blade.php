@@ -6,7 +6,7 @@
 
         {{-- top nav bar  --}}
         <nav class="mt-10 space-y-1">
-            <a href="/" class="block py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white">Home</a>
+            <a href="/" class="block py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white">Home Page</a>
 
             <!-- Dropdown Item -->
             <div>
@@ -21,6 +21,10 @@
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Mobile Applications</a>
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Robotics</a>
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Securities</a>
+                <a href="{{route('categories.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
+                    settings
+                     <span class="material-symbols-outlined text-sm ">settings</span>
+                </a>
               </div>
             </div>
             <div>
@@ -54,7 +58,7 @@
               </div>
             </div>
 
-            <a href="#" class="block py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white">Settings</a>
+
           </nav>
 
       </div>

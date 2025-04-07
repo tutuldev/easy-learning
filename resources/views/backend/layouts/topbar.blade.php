@@ -5,7 +5,7 @@
         <path d="M4 6h16M4 12h16M4 18h16"></path>
       </svg>
     </button>
-    <h1 class="text-xl font-semibold">Dashboard</h1>
+    <a href="/dashboard" class="text-xl font-semibold cursor-pointer">Dashboard</a>
 
     @include('backend.layouts.profile')
   </header>
