@@ -22,14 +22,14 @@
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Robotics</a>
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Securities</a>
                 <a href="{{route('categories.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
-                    settings
-                     <span class="material-symbols-outlined text-sm ">settings</span>
+                    All Categories
+                     <span class="material-symbols-outlined text-sm ">category</span>
                 </a>
               </div>
             </div>
             <div>
               <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white" onclick="toggleDropdown('dropdown2')">
-                <span>Language</span>
+                <span>Languages</span>
                 <svg class="w-4 h-4 transform transition-transform" id="dropdown2-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -37,11 +37,15 @@
               <div id="dropdown2" class="ml-6 mt-1 hidden space-y-1">
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">PHP</a>
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Python</a>
+                <a href="{{route('languages.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
+                    All Language
+                     <span class="material-symbols-outlined text-sm ">frame_source</span>
+                </a>
               </div>
             </div>
             <div>
               <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white" onclick="toggleDropdown('dropdown3')">
-                <span>Framework</span>
+                <span>Frameworks</span>
                 <svg class="w-4 h-4 transform transition-transform" id="dropdown3-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                 </svg>
@@ -55,8 +59,13 @@
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Ruby on Rails</a>
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Lavarel</a>
                 <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">FastAPI</a>
+                <a href="{{route('frameworks.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
+                    All Framework
+                     <span class="material-symbols-outlined text-sm ">integration_instructions</span>
+                </a>
               </div>
             </div>
+            <a href="" class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white">Settings<span class="material-symbols-outlined text-sm ">settings</span></a>
 
 
           </nav>

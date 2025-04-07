@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Backend\FrameworkController;
+use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,8 @@ Route::middleware('auth')->group(function () {
 
 // category
 Route::resource('categories', CategoryController::class);
+Route::resource('languages', LanguageController::class);
+Route::resource('frameworks', FrameworkController::class);
 
 
 require __DIR__.'/auth.php';
