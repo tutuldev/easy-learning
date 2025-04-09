@@ -17,10 +17,14 @@
                 </svg>
               </button>
               <div id="dropdown1" class="ml-6 mt-1 hidden space-y-1">
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Web Applications</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Mobile Applications</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Robotics</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Securities</a>
+
+                @foreach($categories as $category)
+                   <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">{{ $category->name }}</a>
+                @endforeach
+
+
+
+
                 <a href="{{route('categories.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
                     All Categories
                      <span class="material-symbols-outlined text-sm ">category</span>
@@ -35,8 +39,9 @@
                 </svg>
               </button>
               <div id="dropdown2" class="ml-6 mt-1 hidden space-y-1">
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">PHP</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Python</a>
+                @foreach($languages as $language)
+                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">{{ $language->name }}</a>
+             @endforeach
                 <a href="{{route('languages.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
                     All Language
                      <span class="material-symbols-outlined text-sm ">frame_source</span>
@@ -52,13 +57,9 @@
               </button>
               <div id="dropdown3" class="ml-6 mt-1 hidden space-y-1">
 
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">ASP.NET Core</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Spring Boot</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Express.js</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Django</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Ruby on Rails</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">Lavarel</a>
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">FastAPI</a>
+                @foreach($frameworks as $framework)
+                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">{{ $framework->name }}</a>
+             @endforeach
                 <a href="{{route('frameworks.index')}}" class="flex items-center justify-between  py-2 px-4 text-sm rounded hover:bg-gray-200">
                     All Framework
                      <span class="material-symbols-outlined text-sm ">integration_instructions</span>
@@ -66,6 +67,7 @@
               </div>
             </div>
             <a href="" class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white">Settings<span class="material-symbols-outlined text-sm ">settings</span></a>
+
 
 
           </nav>

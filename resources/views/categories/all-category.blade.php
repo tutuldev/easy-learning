@@ -31,7 +31,7 @@
   </div>
   <div class="mt-4">
     {{-- {{$categories->links()}} //default --}}
-    {{ $categories->links('vendor.pagination.custom') }}
+    {{-- {{ $categories->links('vendor.pagination.custom') }} --}}
 
 </div>
 
