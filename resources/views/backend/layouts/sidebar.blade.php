@@ -1,11 +1,20 @@
 <!-- Sidebar -->
-<div id="sidebar" class="bg-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-md">
-    <a href="#" class="text-black flex items-center space-x-2 px-4">
-        <span class="text-2xl font-extrabold">Dashboard</span>
-    </a>
+<div id="sidebar" class="bg-white w-64 space-y-12 py-7 px-2 fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-md z-10">
+
+    <!-- Fixed Close Button (only on mobile) -->
+    <div class="absolute top-[70px] right-4 z-50 md:hidden">
+        <button onclick="hideSidebar()" class="rounded-full bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-black shadow-md transition w-12 h-12 p-2">
+            <span class="material-symbols-outlined text-2xl">close</span>
+        </button>
+
+
+
+    </div>
+
+
 
     {{-- top nav bar --}}
-    <nav class="mt-10 space-y-1">
+    <div class=" space-y-1 overflow-y-auto h-[calc(100vh-5rem)] pr-1 ">
         <!-- Home Page Link -->
         <a href="/" class="block py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Request::is('dashboard') ? 'bg-blue-800 text-white' : '' }}">
             Home Page
@@ -79,5 +88,5 @@
             Settings
             <span class="material-symbols-outlined text-sm">settings</span>
         </a>
-    </nav>
+    </div>
 </div>
