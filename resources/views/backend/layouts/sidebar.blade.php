@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div id="sidebar" class="bg-white w-64 space-y-12 py-7 px-2 fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-md z-10">
+<div id="sidebar" class="bg-white min-w-64 mt-16  px-2  fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-md z-10">
 
     <!-- Fixed Close Button (only on mobile) -->
     <div class="absolute top-[70px] right-4 z-50 md:hidden">
@@ -14,7 +14,7 @@
 
 
     {{-- top nav bar --}}
-    <div class=" space-y-1 overflow-y-auto h-[calc(100vh-5rem)] pr-1 ">
+    <div class="py-2 space-y-1 overflow-y-auto h-[calc(100vh-4rem)] pr-1 ">
         <!-- Home Page Link -->
         <a href="/" class="block py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Request::is('dashboard') ? 'bg-blue-800 text-white' : '' }}">
             Home Page

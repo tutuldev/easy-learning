@@ -11,26 +11,32 @@
     {{-- google front 1  --}}
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     @vite('resources/css/app.css')
+    @vite('resources/css/custom.css')
 
+     {{-- swiper js  --}}
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-100 ">
 
-    <div class="flex h-screen">
+    <div class="flex h-screen  container mx-auto  ">
     <!-- Sidebar -->
     @include('backend.layouts.sidebar')
     <!-- Main Content -->
-    <div class="flex-1 flex flex-col">
+    <div class="flex-1 flex min-w-0 ">
         <!-- Fixed Top Navbar -->
        @include('backend.layouts.topbar')
         <!-- Content -->
-        <main class="p-6 pt-20 ">
+        <main class="md:pl-4 overflow-y-auto h-screen w-full">
         @yield('content')
         </main>
       </div>
     </div>
 
+        <!-- Swiper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <!-- Initialize Swiper -->
     <!-- Scripts -->
     <script>
 const btn = document.getElementById('menu-btn');
@@ -76,6 +82,44 @@ function toggleDropdown(id) {
         profileDropdown.classList.toggle('hidden');
         profileIcon.classList.toggle('rotate-180');
       });
+    //   <!-- Initialize Swiper -->
+    //   for swiper js and fixed Navbar
+    var swiper = new Swiper(".swiper", {
+            slidesPerView: "auto",
+            spaceBetween: 10,
+            freeMode: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            on: {
+                init: function() {
+                    updateNavButtons(this);
+                },
+                slideChange: function() {
+                    updateNavButtons(this);
+                }
+            }
+        });
+
+        function updateNavButtons(swiper) {
+            let prevBtn = document.querySelector(".swiper-button-prev");
+            let nextBtn = document.querySelector(".swiper-button-next");
+
+            // প্রথমে থাকলে "Previous" বাটন পুরোপুরি লুকিয়ে দিন
+            if (swiper.isBeginning) {
+                prevBtn.classList.add("hidden");
+            } else {
+                prevBtn.classList.remove("hidden");
+            }
+
+            // শেষ হলে "Next" বাটন পুরোপুরি লুকিয়ে দিন
+            if (swiper.isEnd) {
+                nextBtn.classList.add("hidden");
+            } else {
+                nextBtn.classList.remove("hidden");
+            }
+        }
     </script>
   </body>
 
