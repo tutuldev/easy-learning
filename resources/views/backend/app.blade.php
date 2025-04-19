@@ -77,15 +77,26 @@ function toggleDropdown(id) {
     }
 
 
-      // Profile dropdown toggle
-      const profileBtn = document.getElementById('profile-btn');
-      const profileDropdown = document.getElementById('profile-dropdown');
-      const profileIcon = document.getElementById('profile-icon');
+    // Profile dropdown toggle
+const profileBtn = document.getElementById('profile-btn');
+const profileDropdown = document.getElementById('profile-dropdown');
+const profileIcon = document.getElementById('profile-icon');
 
-      profileBtn.addEventListener('click', () => {
-        profileDropdown.classList.toggle('hidden');
-        profileIcon.classList.toggle('rotate-180');
-      });
+profileBtn.addEventListener('click', (e) => {
+  e.stopPropagation(); // Prevent click from bubbling to document
+  profileDropdown.classList.toggle('hidden');
+  profileIcon.classList.toggle('rotate-180');
+});
+
+// Hide dropdown on outside click
+document.addEventListener('click', (e) => {
+  const isClickInside = profileDropdown.contains(e.target) || profileBtn.contains(e.target);
+  if (!isClickInside) {
+    profileDropdown.classList.add('hidden');
+    profileIcon.classList.remove('rotate-180');
+  }
+});
+
     //   <!-- Initialize Swiper -->
     //   for swiper js and fixed Navbar
     var swiper = new Swiper(".swiper", {
