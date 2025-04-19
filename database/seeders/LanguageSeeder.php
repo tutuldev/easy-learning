@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Language;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class LanguageSeeder extends Seeder
 {
@@ -13,15 +13,21 @@ class LanguageSeeder extends Seeder
      */
     public function run(): void
     {
+        // পুরাতন সব ডেটা মুছে নতুন করে ইনসার্ট
+        Language::truncate();
+
         $languages = [
-            ['name' => 'PHP'],
-            ['name' => 'Python'],
-            ['name' => 'Java Script'],
-            ['name' => 'Dart'],
+            'PHP',
+            'Python',
+            'Java Script',
+            'Dart',
         ];
 
-        foreach ($languages as $language) {
-            Language::create($language);
+        foreach ($languages as $name) {
+            Language::create([
+                'name' => $name,
+                'slug' => Str::slug($name),
+            ]);
         }
     }
 }

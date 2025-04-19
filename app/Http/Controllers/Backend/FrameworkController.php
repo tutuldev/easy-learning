@@ -5,84 +5,73 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Framework;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class FrameworkController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $frameworks = Framework::paginate(4);
         return view("frameworks.all-framework", compact("frameworks"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('frameworks.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:frameworks,name',
         ]);
+
         Framework::create([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
         ]);
 
         return redirect()->route('frameworks.index')
-                        ->with('status','New Framework Added Successfully.');
+                         ->with('status', 'New Framework Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function show(Framework $framework)
     {
-        //
+        return view('frameworks.show', compact('framework'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function edit(Framework $framework)
     {
-        $framework = Framework::findOrFail($id);
-        return view('frameworks.edit',compact('framework'));
+        return view('frameworks.edit', compact('framework'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, Framework $framework)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:frameworks,name,' . $framework->id,
         ]);
-        $framework =Framework::where('id',$id)
-        ->update([
+
+        $framework->update([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
         ]);
 
         return redirect()->route('frameworks.index')
-        ->with('status','Framework Updated Successfully.');
+                         ->with('status', 'Framework Updated Successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy(Framework $framework)
     {
-        $frameworks=Framework::find($id);
-        $frameworks->delete();
-        return redirect()->route('categories.index')
-        ->with('status','Framework Deleted Successfully.');
+        $framework->delete();
+
+        return redirect()->route('frameworks.index')
+                         ->with('status', 'Framework Deleted Successfully.');
     }
 }

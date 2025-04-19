@@ -5,84 +5,73 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Language;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class LanguageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $languages = Language::paginate(3);
         return view("languages.all-language", compact("languages"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('languages.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:languages,name',
         ]);
+
         Language::create([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
         ]);
 
         return redirect()->route('languages.index')
-                        ->with('status','New Language Added Successfully.');
+                         ->with('status','New Language Added Successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+
+    public function show(Language $language)
     {
-        //
+        return view('languages.show', compact('language'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+
+    public function edit(Language $language)
     {
-        $language = Language::findOrFail($id);
-        return view('languages.edit',compact('language'));
+        return view('languages.edit', compact('language'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+
+    public function update(Request $request, Language $language)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|unique:languages,name,' . $language->id,
         ]);
-        $language =Language::where('id',$id)
-        ->update([
+
+        $language->update([
             'name' => $request->name,
+            'slug' => Str::slug($request->name),
         ]);
 
         return redirect()->route('languages.index')
-        ->with('status','Category Updated Successfully.');
+                         ->with('status','Language Updated Successfully.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+
+    public function destroy(Language $language)
     {
-        $languages=Language::find($id);
-        $languages->delete();
+        $language->delete();
+
         return redirect()->route('languages.index')
-        ->with('status','Language Deleted Successfully.');
+                         ->with('status','Language Deleted Successfully.');
     }
 }

@@ -29,6 +29,9 @@
        @include('backend.layouts.topbar')
         <!-- Content -->
         <main class="md:pl-4 overflow-y-auto h-screen w-full">
+        {{-- fixed nav bar  --}}
+        @include('backend.layouts.fixednav')
+
         @yield('content')
         </main>
       </div>

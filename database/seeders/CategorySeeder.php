@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class CategorySeeder extends Seeder
 {
@@ -13,16 +13,22 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        // পূর্বের সব ক্যাটেগরি ডিলিট করে দেবে (fresh start)
+        Category::truncate();
+
         $categories = [
-            ['name' => 'Web Applications'],
-            ['name' => 'Mobile Applications'],
-            ['name' => 'Robotics'],
-            ['name' => 'Securities'],
-            ['name' => 'Other'],
+            'Web Applications',
+            'Mobile Applications',
+            'Robotics',
+            'Securities',
+            'Other',
         ];
 
-        foreach ($categories as $category) {
-            Category::create($category);
+        foreach ($categories as $name) {
+            Category::create([
+                'name' => $name,
+                'slug' => Str::slug($name),
+            ]);
         }
     }
 }

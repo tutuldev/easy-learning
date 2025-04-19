@@ -15,14 +15,22 @@
 
     {{-- top nav bar --}}
     <div class="py-2 space-y-1 overflow-y-auto h-[calc(100vh-4rem)] pr-1 ">
-        <!-- Home Page Link -->
-        <a href="/" class="block py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Request::is('dashboard') ? 'bg-blue-800 text-white' : '' }}">
-            Home Page
+
+        <a href="/dashboard" class="block py-2.5 px-4 rounded hover:hover:bg-gray-300  {{ Request::is('dashboard') ? 'bg-green-600 text-white' : '' }}">
+            Dashboard
         </a>
+        <!-- Home Page Link -->
+        <a href="/" class="block">
+            <div class="flex justify-between items-center py-2.5 px-4 rounded hover:bg-gray-300 cursor-pointer">
+                <span>Front Page</span>
+                <span class="material-symbols-outlined text-sm">home</span>
+            </div>
+        </a>
+
 
         <!-- Categories Dropdown -->
         <div>
-            <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Route::is('categories.index') || Request::is('categories*') ? 'bg-blue-800 text-white' : '' }}" onclick="toggleDropdown('dropdown1')">
+            <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:hover:bg-gray-300 {{ Route::is('categories.index') || Request::is('categories*') ? 'bg-green-600 text-white' : '' }}" onclick="toggleDropdown('dropdown1')">
                 <span>Categories</span>
                 <svg class="w-4 h-4 transform transition-transform" id="dropdown1-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -30,7 +38,7 @@
             </button>
             <div id="dropdown1" class="ml-6 mt-1 hidden space-y-1">
                 @foreach($categories as $category)
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">
+                <a href="{{ route('categories.show', $category) }}" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">
                     {{ $category->name }}
                 </a>
                 @endforeach
@@ -43,7 +51,7 @@
 
         <!-- Languages Dropdown -->
         <div>
-            <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Route::is('languages.index') || Request::is('languages*') ? 'bg-blue-800 text-white' : '' }}" onclick="toggleDropdown('dropdown2')">
+            <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:hover:bg-gray-300 {{ Route::is('languages.index') || Request::is('languages*') ? 'bg-green-600 text-white' : '' }}" onclick="toggleDropdown('dropdown2')">
                 <span>Languages</span>
                 <svg class="w-4 h-4 transform transition-transform" id="dropdown2-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -51,7 +59,7 @@
             </button>
             <div id="dropdown2" class="ml-6 mt-1 hidden space-y-1">
                 @foreach($languages as $language)
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">
+                <a href="{{ route('languages.show', $language) }}" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">
                     {{ $language->name }}
                 </a>
                 @endforeach
@@ -64,7 +72,7 @@
 
         <!-- Frameworks Dropdown -->
         <div>
-            <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Route::is('frameworks.index') || Request::is('frameworks*') ? 'bg-blue-800 text-white' : '' }}" onclick="toggleDropdown('dropdown3')">
+            <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:hover:bg-gray-300 {{ Route::is('frameworks.index') || Request::is('frameworks*') ? 'bg-green-600 text-white' : '' }}" onclick="toggleDropdown('dropdown3')">
                 <span>Frameworks</span>
                 <svg class="w-4 h-4 transform transition-transform" id="dropdown3-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -72,7 +80,7 @@
             </button>
             <div id="dropdown3" class="ml-6 mt-1 hidden space-y-1">
                 @foreach($frameworks as $framework)
-                <a href="#" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">
+                <a href="{{ route('frameworks.show', $framework) }}" class="block py-2 px-4 text-sm rounded hover:bg-gray-200">
                     {{ $framework->name }}
                 </a>
                 @endforeach
@@ -84,7 +92,7 @@
         </div>
 
         <!-- Settings Link -->
-        <a href="/settings" class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-blue-500 hover:text-white {{ Request::is('settings') ? 'bg-blue-800 text-white' : '' }}">
+        <a href="/settings" class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:hover:bg-gray-300 {{ Request::is('settings') ? 'bg-green-600 text-white' : '' }}">
             Settings
             <span class="material-symbols-outlined text-sm">settings</span>
         </a>

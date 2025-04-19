@@ -1,7 +1,7 @@
 @extends('backend.app')
 @section('content')
 {{-- dashbord topbar  --}}
-@include('backend.layouts.fixednav')
+{{-- @include('backend.layouts.fixednav') --}}
 
 {{-- dashbord topbar  end--}}
 <div class="dashbord-main mt-20">

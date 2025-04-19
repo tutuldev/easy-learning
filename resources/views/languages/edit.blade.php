@@ -3,7 +3,7 @@
 <h2 class="text-2xl font-semibold ">Edit language</h2>
 <a href="/dashboard" class="text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block"><span class="material-symbols-outlined align-middle text-xs mx-2">arrow_back_ios</span>Back</a>
 
-<form action="{{ route('languages.update', $language->id) }}" method="POST" class="max-w-sm  bg-white p-6 rounded-lg shadow">
+<form action="{{ route('languages.update', $language->slug) }}" method="POST" class="max-w-sm  bg-white p-6 rounded-lg shadow">
     @csrf
     @method('PUT')
 
