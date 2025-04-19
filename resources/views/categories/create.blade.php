@@ -1,6 +1,6 @@
 @extends('backend.app')
 @section('content')
-<h2 class="text-2xl font-semibold ">Add Category</h2>
+<h2 class="mt-16 text-2xl font-semibold ">Add Category</h2>
 <a href="/dashboard" class="text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block"><span class="material-symbols-outlined align-middle text-xs mx-2">arrow_back_ios</span>Back</a>
 
 <form action="{{ route('categories.store') }}" method="POST" class="max-w-sm  bg-white p-6 rounded-lg shadow">
