@@ -1,7 +1,7 @@
 @extends('backend.app')
 @section('content')
-<h2 class="text-2xl font-semibold ">Languages</h2>
-<a href="{{ route('languages.create') }}" class="mt-16 text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block">Add<span class="material-symbols-outlined align-middle text-sm mx-2">add</span></a>
+<h2 class="text-2xl font-semibold mt-16">Languages</h2>
+<a href="{{ route('languages.create') }}" class=" text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block">Add<span class="material-symbols-outlined align-middle text-sm mx-2">add</span></a>
 <div class="flex xl:w-8/12">
     <table class="min-w-full table-auto border text-center border-gray-200">
       <thead class="bg-gray-100">

@@ -1,14 +1,11 @@
 <!-- Sidebar -->
-<div id="sidebar" class="bg-white min-w-64 mt-16  px-2  fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-md z-10">
+<div id="sidebar" class="borderr border-red-300 bg-white min-w-64 mt-16  px-2  fixed inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out shadow-md z-20">
 
     <!-- Fixed Close Button (only on mobile) -->
-    <div class="absolute top-[70px] right-4 z-50 md:hidden">
+    <div class="absolute top-1 right-4 z-50 md:hidden">
         <button onclick="hideSidebar()" class="rounded-full bg-gray-100 hover:bg-gray-300 text-gray-700 hover:text-black shadow-md transition w-12 h-12 p-2">
             <span class="material-symbols-outlined text-2xl">close</span>
         </button>
-
-
-
     </div>
 
 

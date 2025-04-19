@@ -1,4 +1,5 @@
-    <header class="flex justify-between items-center  bg-white p-4 shadow-md fixed top-0 left-0 right-0 z-30 container mx-auto">
+    <header class=" fixed top-0 left-0 right-0 bg-white shadow-lg border-red-500">
+   <div class="flex justify-between items-center container bg-white p-4    z-40  mx-auto ">
     <div class="flex items-center space-x-4">
         <button id="menu-btn" class="text-gray-600 md:hidden focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
@@ -10,4 +11,5 @@
     </div>
 
     @include('backend.layouts.profile')
+   </div>
   </header>

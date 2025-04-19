@@ -109,16 +109,35 @@
                 </ul>
                 <div class="authentication">
                     <div class="hidden space-x-2 sm:flex">
-                        <button
-                            class="py-2 px-8 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer hidden sm:block">
-                            Sign Up
-                        </button>
+                        @guest
+                            <!-- Sign Up Button -->
+                            <a href="{{ route('register') }}">
+                                <button
+                                    class="py-2 px-8 bg-blue-500 text-white font-semibold rounded-full hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50 cursor-pointer hidden sm:block">
+                                    Sign Up
+                                </button>
+                            </a>
 
-                        <button
-                            class="py-2 px-8 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 cursor-pointer">
-                            Log in
-                        </button>
+                            <!-- Log In Button -->
+                            <a href="{{ route('login') }}">
+                                <button
+                                    class="py-2 px-8 bg-green-500 text-white font-semibold rounded-full hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 cursor-pointer">
+                                    Log in
+                                </button>
+                            </a>
+                        @else
+                            <!-- Log Out Button -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button
+                                    type="submit"
+                                    class="py-2 px-8 bg-red-500 text-white font-semibold rounded-full hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-50 cursor-pointer">
+                                    Log out
+                                </button>
+                            </form>
+                        @endguest
                     </div>
+
                     <div class="sm:hidden block mx-5">
                         <span class="material-symbols-outlined text-2xl text-gray-700 cursor-pointer hover:text-blue-500 transition">person</span>
 

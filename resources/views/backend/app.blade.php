@@ -19,14 +19,15 @@
 
 </head>
 <body class="bg-gray-100 ">
+   <!-- Fixed Top Navbar -->
+   @include('backend.layouts.topbar')
+    <div class="flex h-screen  container mx-auto ">
 
-    <div class="flex h-screen  container mx-auto  ">
     <!-- Sidebar -->
     @include('backend.layouts.sidebar')
     <!-- Main Content -->
     <div class="flex-1 flex min-w-0 ">
-        <!-- Fixed Top Navbar -->
-       @include('backend.layouts.topbar')
+
         <!-- Content -->
         <main class="md:pl-4 overflow-y-auto h-screen w-full">
         {{-- fixed nav bar  --}}
