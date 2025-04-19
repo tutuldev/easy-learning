@@ -9,11 +9,12 @@
     </button>
     <div id="profile-dropdown" class="absolute right-0 mt-2 w-48 bg-white shadow-md rounded-md hidden">
 
+        <a href="{{route("profile.edit")}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
         <form method="POST" action="{{ route('logout') }}">
           @csrf
-          <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
+          <button type="submit" class="w-full block text-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</button>
         </form>
 
-        <a href="{{route("profile.edit")}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+
     </div>
   </div>

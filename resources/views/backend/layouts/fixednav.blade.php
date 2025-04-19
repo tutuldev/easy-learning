@@ -1,5 +1,5 @@
-<div class="sticky top-16 py-2 bg-gray-100 z-50 ">
-    <div class="swiper container bg-[#261F1E] rounded-lg cursor-pointer">
+<div class="sticky top-16 py-2 bg-gray-100  ">
+    <div class="swiper container bg-[#261F1E] rounded-lg cursor-pointer z-30">
         <div class="swiper-wrapper py-3  ">
             <div class="swiper-slide !w-auto">
                 <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">HTML </a>
