@@ -21,7 +21,7 @@
 <body class="bg-gray-100 ">
    <!-- Fixed Top Navbar -->
    @include('backend.layouts.topbar')
-    <div class="flex h-screen  container mx-auto ">
+    <div class="flex h-screen  container  mx-auto ">
 
     <!-- Sidebar -->
     @include('backend.layouts.sidebar')
