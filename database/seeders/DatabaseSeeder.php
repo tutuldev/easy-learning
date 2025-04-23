@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             LanguageSeeder::class,
             FrameworkSeeder::class,
+            StructerSeeder::class,
         ]);
     }
 }

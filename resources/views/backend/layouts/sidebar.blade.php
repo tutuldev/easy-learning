@@ -34,6 +34,7 @@
                     ['title' => 'Categories', 'id' => 'dropdown1', 'items' => $categories, 'route' => 'categories'],
                     ['title' => 'Languages', 'id' => 'dropdown2', 'items' => $languages, 'route' => 'languages'],
                     ['title' => 'Frameworks', 'id' => 'dropdown3', 'items' => $frameworks, 'route' => 'frameworks'],
+                    ['title' => 'Structers', 'id' => 'dropdown4', 'items' => $structers, 'route' => 'structers'],
                 ];
             @endphp
 

@@ -4,7 +4,9 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FrameworkController;
 use App\Http\Controllers\Backend\LanguageController;
+use App\Http\Controllers\Backend\StructerController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Structer;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +28,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('categories', CategoryController::class);
 Route::resource('languages', LanguageController::class);
 Route::resource('frameworks', FrameworkController::class);
+Route::resource('structers', StructerController::class);
 
 
 require __DIR__.'/auth.php';

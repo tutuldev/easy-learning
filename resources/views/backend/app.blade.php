@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     @vite('resources/css/app.css')
     @vite('resources/css/custom.css')
-
     {{-- swiper js  --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -27,15 +26,8 @@
     </header>
 
     <!-- Sidebar and Main Content Container -->
-    <div class="mx-auto flex container"> {{-- pt-16 = header height --}}
-
-        {{-- for layout  --}}
-        {{-- <div id="counter" class="hidden">0</div>
-        <div id="footer-counter" class="hidden">0</div> --}}
-        {{-- for layout  --}}
-        {{-- sidebar  --}}
+    <div class="mx-auto flex container">
         @include('backend.layouts.sidebar')
-
         <!--Main Content -->
         <main class="flex-1 px-4">
             @yield('content')

@@ -21,6 +21,7 @@ class LanguageSeeder extends Seeder
             'Python',
             'Java Script',
             'Dart',
+            'Database',
         ];
 
         foreach ($languages as $name) {
