@@ -16,13 +16,13 @@
         <div class="py-2 space-y-1 pr-1">
             <!-- Dashboard -->
             <a href="/dashboard"
-               class="block py-2.5 px-4 rounded hover:bg-gray-300 {{ Request::is('dashboard') ? 'bg-green-600 text-white' : '' }}">
+               class="block py-2.5 px-4 rounded {{ Request::is('dashboard') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }}">
                 Dashboard
             </a>
 
             <!-- Front Page -->
             <a href="/" class="block">
-                <div class="flex justify-between items-center py-2.5 px-4 rounded hover:bg-gray-300 cursor-pointer">
+                <div class="flex justify-between items-center py-2.5 px-4 rounded {{ Request::is('/') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }} cursor-pointer">
                     <span>Front Page</span>
                     <span class="material-symbols-outlined text-sm">home</span>
                 </div>
@@ -39,7 +39,7 @@
 
             @foreach($menus as $menu)
             <div>
-                <button class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-gray-300 {{ Route::is($menu['route'].'.index') || Request::is($menu['route'].'*') ? 'bg-green-600 text-white' : '' }}"
+                <button class="flex justify-between items-center w-full py-2.5 px-4 rounded {{ Route::is($menu['route'].'.index') || Request::is($menu['route'].'*') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }}"
                         onclick="toggleDropdown('{{ $menu['id'] }}')">
                     <span>{{ $menu['title'] }}</span>
                     <svg class="w-4 h-4 transform transition-transform" id="{{ $menu['id'] }}-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -52,7 +52,7 @@
                             {{ $item->name }}
                         </a>
                     @endforeach
-                    <a href="{{ route($menu['route'].'.index') }}" class="flex items-center justify-between py-2 px-4 text-sm rounded hover:bg-gray-200 {{ Route::is($menu['route'].'.index') ? 'bg-gray-300' : '' }}">
+                    <a href="{{ route($menu['route'].'.index') }}" class="flex items-center justify-between py-2 px-4 text-sm rounded {{ Route::is($menu['route'].'.index') ? 'bg-gray-300' : 'hover:bg-gray-200' }}">
                         All {{ $menu['title'] }}
                         <span class="material-symbols-outlined text-sm">chevron_right</span>
                     </a>
@@ -61,10 +61,11 @@
             @endforeach
 
             <!-- Settings -->
-            <a href="/settings" class="flex justify-between items-center w-full py-2.5 px-4 rounded hover:bg-gray-300 {{ Request::is('settings') ? 'bg-green-600 text-white' : '' }}">
+            <a href="/settings" class="flex justify-between items-center w-full py-2.5 px-4 rounded {{ Request::is('settings') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }}">
                 Settings
                 <span class="material-symbols-outlined text-sm">settings</span>
             </a>
         </div>
+
     </aside>
 </div>
