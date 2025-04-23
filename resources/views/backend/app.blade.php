@@ -13,93 +13,128 @@
     @vite('resources/css/app.css')
     @vite('resources/css/custom.css')
 
-     {{-- swiper js  --}}
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {{-- swiper js  --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
 
 </head>
-<body class="bg-gray-100 ">
-   <!-- Fixed Top Navbar -->
-   @include('backend.layouts.topbar')
-    <div class="flex h-screen  container  mx-auto ">
 
-    <!-- Sidebar -->
-    @include('backend.layouts.sidebar')
-    <!-- Main Content -->
-    <div class="flex-1 flex min-w-0 ">
-
-        <!-- Content -->
-        <main class="md:pl-4 overflow-y-auto h-screen w-full">
-        {{-- fixed nav bar  --}}
+<body class="bg-[#F5F6F7] ">
+    <!-- header -->
+    <header class=" sticky top-0 left-0 right-0  z-50 h-[112px]">
+        @include('backend.layouts.topbar')
         @include('backend.layouts.fixednav')
+    </header>
 
-        @yield('content')
+    <!-- Sidebar and Main Content Container -->
+    <div class="mx-auto flex container"> {{-- pt-16 = header height --}}
+
+        {{-- for layout  --}}
+        {{-- <div id="counter" class="hidden">0</div>
+        <div id="footer-counter" class="hidden">0</div> --}}
+        {{-- for layout  --}}
+        {{-- sidebar  --}}
+        @include('backend.layouts.sidebar')
+
+        <!--Main Content -->
+        <main class="flex-1 px-4">
+            @yield('content')
         </main>
-      </div>
     </div>
+      <!-- Footer -->
+  <footer class="p-4 z-50 bg-black py-36 text-lg">
+    <div class=" container mx-auto flex justify-center text-sm text-gray-400 flex-col items-center">
+        <h1>This is Footer</h1>
+      &copy; 2025 All rights reserved.
+    </div>
+  </footer>
 
-        <!-- Swiper JS -->
-        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-        <!-- Initialize Swiper -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <!-- Initialize Swiper -->
     <!-- Scripts -->
     <script>
-const btn = document.getElementById('menu-btn');
-const sidebar = document.getElementById('sidebar');
+        const btn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
 
-// Toggle sidebar on button click
-btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Prevent click from bubbling to document
-    sidebar.classList.toggle('-translate-x-full');
-});
+        // Toggle sidebar on button click
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
+            sidebar.classList.toggle('-translate-x-full');
+        });
 
-// Click outside to close sidebar
-document.addEventListener('click', function (e) {
-    const isClickInsideSidebar = sidebar.contains(e.target);
-    const isClickOnButton = btn.contains(e.target);
+        // Click outside to close sidebar
+        document.addEventListener('click', function(e) {
+            const isClickInsideSidebar = sidebar.contains(e.target);
+            const isClickOnButton = btn.contains(e.target);
 
-    if (!isClickInsideSidebar && !isClickOnButton) {
-        sidebar.classList.add('-translate-x-full');
+            if (!isClickInsideSidebar && !isClickOnButton) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        // Dropdown toggler
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            const icon = document.getElementById(`${id}-icon`);
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // sidebar close by cross button
+        function hideSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('-translate-x-full');
+        }
+
+
+        // Profile dropdown toggle
+        const profileBtn = document.getElementById('profile-btn');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        const profileIcon = document.getElementById('profile-icon');
+
+        profileBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
+            profileDropdown.classList.toggle('hidden');
+            profileIcon.classList.toggle('rotate-180');
+        });
+
+        // Hide dropdown on outside click
+        document.addEventListener('click', (e) => {
+            const isClickInside = profileDropdown.contains(e.target) || profileBtn.contains(e.target);
+            if (!isClickInside) {
+                profileDropdown.classList.add('hidden');
+                profileIcon.classList.remove('rotate-180');
+            }
+        });
+
+        // for layout
+        function updateSidebarHeight() {
+      const footer = document.querySelector('footer');
+      const sidebar = document.querySelector('#sidebar');
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Calculate overlap height if the footer is in the viewport
+      const overlapHeight = footerRect.top < windowHeight && footerRect.top > 0
+        ? Math.max(windowHeight - footerRect.top, 0)
+        : 0;
+
+      // Update the custom property for dynamic height adjustment
+      document.documentElement.style.setProperty('--overlap-height', `${overlapHeight}px`);
     }
-});
 
-// Dropdown toggler
-function toggleDropdown(id) {
-    const dropdown = document.getElementById(id);
-    const icon = document.getElementById(`${id}-icon`);
-    dropdown.classList.toggle('hidden');
-    icon.classList.toggle('rotate-180');
-}
+    // Attach scroll and resize event listeners
+    window.addEventListener('scroll', updateSidebarHeight);
+    window.addEventListener('resize', updateSidebarHeight);
 
-    // sidebar close by cross button
-    function hideSidebar() {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.add('-translate-x-full');
-    }
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', updateSidebarHeight);
+        // end layout js
 
-
-    // Profile dropdown toggle
-const profileBtn = document.getElementById('profile-btn');
-const profileDropdown = document.getElementById('profile-dropdown');
-const profileIcon = document.getElementById('profile-icon');
-
-profileBtn.addEventListener('click', (e) => {
-  e.stopPropagation(); // Prevent click from bubbling to document
-  profileDropdown.classList.toggle('hidden');
-  profileIcon.classList.toggle('rotate-180');
-});
-
-// Hide dropdown on outside click
-document.addEventListener('click', (e) => {
-  const isClickInside = profileDropdown.contains(e.target) || profileBtn.contains(e.target);
-  if (!isClickInside) {
-    profileDropdown.classList.add('hidden');
-    profileIcon.classList.remove('rotate-180');
-  }
-});
-
-    //   <!-- Initialize Swiper -->
-    //   for swiper js and fixed Navbar
-    var swiper = new Swiper(".swiper", {
+        //   <!-- Initialize Swiper -->
+        //   for swiper js and fixed Navbar
+        var swiper = new Swiper(".swiper", {
             slidesPerView: "auto",
             spaceBetween: 10,
             freeMode: true,
@@ -136,6 +171,6 @@ document.addEventListener('click', (e) => {
             }
         }
     </script>
-  </body>
+</body>
 
 </html>
