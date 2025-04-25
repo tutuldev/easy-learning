@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             LanguageSeeder::class,
             FrameworkSeeder::class,
             StructerSeeder::class,
+            PostSeeder::class,
         ]);
     }
 }

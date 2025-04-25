@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FrameworkController;
 use App\Http\Controllers\Backend\LanguageController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\StructerController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Structer;
@@ -29,6 +30,7 @@ Route::resource('categories', CategoryController::class);
 Route::resource('languages', LanguageController::class);
 Route::resource('frameworks', FrameworkController::class);
 Route::resource('structers', StructerController::class);
+Route::resource('posts', PostController::class);
 
 
 require __DIR__.'/auth.php';

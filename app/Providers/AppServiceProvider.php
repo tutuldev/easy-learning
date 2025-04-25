@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Language;
 use App\Models\Framework;
 use App\Models\Structer;
+use App\Models\Post;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -25,21 +26,24 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer(['backend.app', 'frontend.app'], function ($view) {
-            // Retrieve categories, languages, frameworks, structers and their slugs
+            // Retrieve all data
             $categories = Category::all();
             $languages = Language::all();
             $frameworks = Framework::all();
             $structers  = Structer::all();
+            $posts      = Post::latest()->take(5)->get();
 
-            // Pass all data along with slugs to the view
+            // Pass data to views
             $view->with('categories', $categories)
                  ->with('languages', $languages)
                  ->with('frameworks', $frameworks)
                  ->with('structers', $structers)
+                 ->with('posts', $posts) 
                  ->with('categorySlugs', $categories->pluck('slug'))
                  ->with('languageSlugs', $languages->pluck('slug'))
                  ->with('frameworkSlugs', $frameworks->pluck('slug'))
-                 ->with('structerSlugs', $structers->pluck('slug'));
+                 ->with('structerSlugs', $structers->pluck('slug'))
+                 ->with('postSlugs', $posts->pluck('slug'));
         });
     }
 }
