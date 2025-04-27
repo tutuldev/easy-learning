@@ -24,6 +24,7 @@ class FrameworkSeeder extends Seeder
             'Ruby on Rails',
             'Lavarel',
             'FastAPI',
+            'Without Framework',
         ];
 
         foreach ($frameworks as $name) {
