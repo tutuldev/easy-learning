@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Framework;
-use App\Models\Language;
 use App\Models\Structer;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -23,22 +23,23 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $frameworks = Framework::all();
-        $languages  = Language::all();
+        $topics     = Topic::all();
         $structers  = Structer::all();
 
-        return view('posts.create', compact('categories', 'frameworks', 'languages', 'structers'));
+        return view('posts.create', compact('categories', 'frameworks', 'topics', 'structers'));
     }
 
     public function store(Request $request)
     {
+        // return $request->all();
         $request->validate([
-            'title'      => 'required|string|max:255',
-            'description'=> 'required|string',
-            'category'   => 'required|string',
-            'framework'  => 'required|string',
-            'language'   => 'required|string',
-            'structer'   => 'required|string',
-            'image'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string',
+            'category'    => 'required|exists:categories,id',
+            'framework'   => 'required|exists:frameworks,id',
+            'topic'       => 'required|exists:topics,id',
+            'structer'    => 'required|exists:structers,id',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $imagePath = null;
@@ -47,15 +48,15 @@ class PostController extends Controller
         }
 
         Post::create([
-            'title'       => $request->title,
-            'slug'        => Str::slug($request->title),
-            'description' => $request->description,
-            'category'    => $request->category,
-            'framework'   => $request->framework,
-            'language'    => $request->language,
-            'structer'    => $request->structer,
-            'code'        => $request->code,
-            'image'       => $imagePath,
+            'title'        => $request->title,
+            'slug'         => Str::slug($request->title),
+            'description'  => $request->description,
+            'category_id'  => $request->category,
+            'framework_id' => $request->framework,
+            'topic_id'     => $request->topic,
+            'structer_id'  => $request->structer,
+            'code'         => $request->code,
+            'image'        => $imagePath,
         ]);
 
         return redirect()->route('posts.index')
@@ -71,22 +72,22 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $frameworks = Framework::all();
-        $languages  = Language::all();
+        $topics     = Topic::all();
         $structers  = Structer::all();
 
-        return view('posts.edit', compact('post', 'categories', 'frameworks', 'languages', 'structers'));
+        return view('posts.edit', compact('post', 'categories', 'frameworks', 'topics', 'structers'));
     }
 
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title'      => 'required|string|max:255',
-            'description'=> 'required|string',
-            'category'   => 'required|string',
-            'framework'  => 'required|string',
-            'language'   => 'required|string',
-            'structer'   => 'required|string',
-            'image'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'title'       => 'required|string|max:255',
+            'description' => 'required|string',
+            'category'    => 'required|exists:categories,id',
+            'framework'   => 'required|exists:frameworks,id',
+            'topic'       => 'required|exists:topics,id',
+            'structer'    => 'required|exists:structers,id',
+            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $imagePath = $post->image;
@@ -95,15 +96,15 @@ class PostController extends Controller
         }
 
         $post->update([
-            'title'       => $request->title,
-            'slug'        => Str::slug($request->title),
-            'description' => $request->description,
-            'category'    => $request->category,
-            'framework'   => $request->framework,
-            'language'    => $request->language,
-            'structer'    => $request->structer,
-            'code'        => $request->code,
-            'image'       => $imagePath,
+            'title'        => $request->title,
+            'slug'         => Str::slug($request->title),
+            'description'  => $request->description,
+            'category_id'  => $request->category,
+            'framework_id' => $request->framework,
+            'topic_id'     => $request->topic,
+            'structer_id'  => $request->structer,
+            'code'         => $request->code,
+            'image'        => $imagePath,
         ]);
 
         return redirect()->route('posts.index')
@@ -116,5 +117,43 @@ class PostController extends Controller
 
         return redirect()->route('posts.index')
                          ->with('status', 'Post deleted successfully.');
+    }
+
+    public function filterByTopic($topicName)
+    {
+        $posts = Post::whereHas('topic', function($query) use ($topicName) {
+            $query->where('name', $topicName);
+        })->get();
+
+        return view('posts.filterpost', compact('posts', 'topicName'));
+    }
+    // Filter by Category
+    public function filterByCategory($categoryName)
+    {
+        $posts = Post::whereHas('category', function($query) use ($categoryName) {
+            $query->where('name', $categoryName);
+        })->get();
+
+        return view('posts.filterpost', compact('posts', 'categoryName'));
+    }
+
+    // Filter by Structure
+    public function filterByStructer($structerName)
+    {
+        $posts = Post::whereHas('structer', function($query) use ($structerName) {
+            $query->where('name', $structerName);
+        })->get();
+
+        return view('posts.filterpost', compact('posts', 'structerName'));
+    }
+
+    // Filter by Framework
+    public function filterByFramework($frameworkName)
+    {
+        $posts = Post::whereHas('framework', function($query) use ($frameworkName) {
+            $query->where('name', $frameworkName);
+        })->get();
+
+        return view('posts.filterpost', compact('posts', 'frameworkName'));
     }
 }

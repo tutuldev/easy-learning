@@ -13,8 +13,8 @@ class FrameworkSeeder extends Seeder
      */
     public function run(): void
     {
-        // আগের সব ফ্রেমওয়ার্ক মুছে ফেলবে (fresh insert)
-        Framework::truncate();
+
+        Framework::query()->delete();
 
         $frameworks = [
             'ASP.NET Core',
@@ -24,7 +24,8 @@ class FrameworkSeeder extends Seeder
             'Ruby on Rails',
             'Lavarel',
             'FastAPI',
-            'Without Framework',
+            'Flutter',
+            'No Framework',
         ];
 
         foreach ($frameworks as $name) {

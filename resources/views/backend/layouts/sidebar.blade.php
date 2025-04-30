@@ -32,7 +32,7 @@
             @php
                 $menus = [
                     ['title' => 'Categories', 'id' => 'dropdown1', 'items' => $categories, 'route' => 'categories'],
-                    ['title' => 'Languages', 'id' => 'dropdown2', 'items' => $languages, 'route' => 'languages'],
+                    ['title' => 'Topics & Language', 'id' => 'dropdown2', 'items' => $topics, 'route' => 'topics'],
                     ['title' => 'Frameworks', 'id' => 'dropdown3', 'items' => $frameworks, 'route' => 'frameworks'],
                     ['title' => 'Structers', 'id' => 'dropdown4', 'items' => $structers, 'route' => 'structers'],
                     ['title' => 'Posts', 'id' => 'dropdown5', 'items' => $posts, 'route' => 'posts'],
@@ -85,6 +85,7 @@
                 Settings
                 <span class="material-symbols-outlined text-sm">settings</span>
             </a>
+
         </div>
     </aside>
 </div>

@@ -30,7 +30,7 @@
         <select id="category" name="category"
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             @foreach($categories as $category)
-                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
     </div>
@@ -41,19 +41,22 @@
         <select id="framework" name="framework"
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             @foreach($frameworks as $framework)
-                <option value="{{ $framework->name }}">{{ $framework->name }}</option>
+                <option value="{{ $framework->id }}">{{ $framework->name }}</option>
             @endforeach
         </select>
     </div>
 
-    <!-- Language -->
+    <!-- Topic -->
     <div>
-        <label for="language" class="block text-sm font-medium text-gray-700 mb-1">Language</label>
-        <select id="language" name="language"
+        <label for="topic" class="block text-sm font-medium text-gray-700 mb-1">Topic</label>
+        <select id="topic" name="topic"
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            @foreach($languages as $language)
-                <option value="{{ $language->name }}">{{ $language->name }}</option>
+            @foreach($topics as $topic)
+                <option value="{{ $topic->id }}">{{ $topic->name }}</option>
             @endforeach
+            @foreach($frameworks as $framework)
+            <option value="{{ $framework->id }}">{{ $framework->name }}</option>
+             @endforeach
         </select>
     </div>
 
@@ -63,7 +66,7 @@
         <select id="structer" name="structer"
                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
             @foreach($structers as $structer)
-                <option value="{{ $structer->name }}">{{ $structer->name }}</option>
+                <option value="{{ $structer->id }}">{{ $structer->name }}</option>
             @endforeach
         </select>
     </div>

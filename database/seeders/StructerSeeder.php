@@ -13,18 +13,20 @@ class StructerSeeder extends Seeder
      */
     public function run(): void
     {
-        // পুরাতন সব ডেটা মুছে নতুন করে ইনসার্ট
-        Structer::truncate();
+   
+        Structer::query()->delete();
+
 
         $structers = [
             'Procedural Structure',
-            'Object-Oriented Structure (OOP)',
+            'OOP',
             'Functional Structure',
             'Hierarchical Database Structure',
             'Relational Database Structure',
             'Document-Based Database (NoSQL)',
             'Key-Value Database',
             'Graph Database',
+            'MVC',
         ];
 
         foreach ($structers as $name) {

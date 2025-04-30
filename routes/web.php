@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\FrameworkController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\StructerController;
+use App\Http\Controllers\Backend\TopicController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Structer;
 use Illuminate\Support\Facades\Route;
@@ -23,14 +24,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('categories', CategoryController::class);
+    Route::resource('topics', TopicController::class);
+    Route::resource('frameworks', FrameworkController::class);
+    Route::resource('structers', StructerController::class);
+    Route::resource('posts', PostController::class);
+    Route::get('/posts/topic/{topic}', [PostController::class, 'filterByTopic'])->name('posts.topic');
+    Route::get('/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('posts.category');
+    Route::get('/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('posts.structer');
+    Route::get('/posts/framework/{framework}', [PostController::class, 'filterByFramework'])->name('posts.framework');
+
 });
 
-// category
-Route::resource('categories', CategoryController::class);
-Route::resource('languages', LanguageController::class);
-Route::resource('frameworks', FrameworkController::class);
-Route::resource('structers', StructerController::class);
-Route::resource('posts', PostController::class);
+
+
 
 
 require __DIR__.'/auth.php';

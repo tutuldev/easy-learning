@@ -2,30 +2,34 @@
 
 namespace Database\Seeders;
 
-use App\Models\Language;
+use App\Models\Topic;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-class LanguageSeeder extends Seeder
+class TopicSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        // পুরাতন সব ডেটা মুছে নতুন করে ইনসার্ট
-        Language::truncate();
+       
+        Topic::query()->delete();
 
-        $languages = [
+
+        $topics = [
             'PHP',
+            'HTML',
+            'CSS',
             'Python',
             'Java Script',
             'Dart',
             'Database',
+
         ];
 
-        foreach ($languages as $name) {
-            Language::create([
+        foreach ($topics as $name) {
+            Topic::create([
                 'name' => $name,
                 'slug' => Str::slug($name),
             ]);

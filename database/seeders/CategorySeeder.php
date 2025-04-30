@@ -13,16 +13,19 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        // পূর্বের সব ক্যাটেগরি ডিলিট করে দেবে (fresh start)
-        Category::truncate();
 
+        Category::query()->delete();
+
+      
         $categories = [
             'Web Applications',
             'Mobile Applications',
             'Robotics',
+            'Programming',
             'Securities',
             'Other',
         ];
+
 
         foreach ($categories as $name) {
             Category::create([

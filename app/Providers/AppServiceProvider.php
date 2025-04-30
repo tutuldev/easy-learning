@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Category;
-use App\Models\Language;
+use App\Models\Topic;
 use App\Models\Framework;
 use App\Models\Structer;
 use App\Models\Post;
@@ -25,41 +25,38 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer(['backend.app', 'frontend.app','dashboard'], function ($view) {
+        View::composer(['backend.app', 'frontend.app', 'dashboard'], function ($view) {
             // Retrieve all data
             $categories = Category::all();
             foreach ($categories as $category) {
-                $category->posts_count = Post::where('category', $category->name)->count();
+                $category->posts_count = Post::where('category_id', $category->id)->count();
             }
 
-            $languages = Language::all();
-            foreach ($languages as $language) {
-                $language->posts_count = Post::where('language', $language->name)->count();
+            $topics = Topic::all();
+            foreach ($topics as $topic) {
+                $topic->posts_count = Post::where('topic_id', $topic->id)->count();
             }
 
             $frameworks = Framework::all();
             foreach ($frameworks as $framework) {
-                $framework->posts_count = Post::where('framework', $framework->name)->count();
+                $framework->posts_count = Post::where('framework_id', $framework->id)->count();
             }
 
             $structers = Structer::all();
             foreach ($structers as $structer) {
-                $structer->posts_count = Post::where('structer', $structer->name)->count();
+                $structer->posts_count = Post::where('structer_id', $structer->id)->count();
             }
 
             $posts = Post::latest()->take(5)->get();
 
             // Pass data to views
-            $view->with('categories', $categories)
-                 ->with('languages', $languages)
-                 ->with('frameworks', $frameworks)
-                 ->with('structers', $structers)
-                 ->with('posts', $posts)
-                 ->with('categorySlugs', $categories->pluck('slug'))
-                 ->with('languageSlugs', $languages->pluck('slug'))
-                 ->with('frameworkSlugs', $frameworks->pluck('slug'))
-                 ->with('structerSlugs', $structers->pluck('slug'))
-                 ->with('postSlugs', $posts->pluck('slug'));
+            $view->with([
+                'categories' => $categories,
+                'topics' => $topics,
+                'frameworks' => $frameworks,
+                'structers' => $structers,
+                'posts' => $posts,
+            ]);
         });
     }
 }

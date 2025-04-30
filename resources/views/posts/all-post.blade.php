@@ -10,7 +10,7 @@
                 <th class="px-4 py-2 text-sm font-medium text-gray-600 border">ID</th>
                 <th class="px-4 py-2 text-sm font-medium text-gray-600 border">Title</th>
                 <th class="px-4 py-2 text-sm font-medium text-gray-600 border">Category</th>
-                <th class="px-4 py-2 text-sm font-medium text-gray-600 border">Language</th>
+                <th class="px-4 py-2 text-sm font-medium text-gray-600 border">Topic</th>
                 <th class="px-4 py-2 text-sm font-medium text-gray-600 border">Actions</th>
             </tr>
         </thead>
@@ -19,8 +19,8 @@
             <tr class="hover:bg-gray-50">
                 <td class="px-4 py-2 border">{{ $post->id }}</td>
                 <td class="px-4 py-2 border">{{ $post->title }}</td>
-                <td class="px-4 py-2 border">{{ $post->category }}</td>
-                <td class="px-4 py-2 border">{{ $post->language }}</td>
+                <td class="px-4 py-2 border">{{ $post->category->name }}</td>
+                <td class="px-4 py-2 border">{{ $post->topic->name }}</td>
                 <td class="flex space-x-2 justify-center py-2">
                     <a href="{{ route('posts.show', $post->slug) }}" class="text-white px-2 py-1 rounded-md bg-indigo-600 hover:bg-indigo-700 text-sm">Show</a>
                     <a href="{{ route('posts.edit', $post->slug) }}" class="text-white px-2 py-1 rounded-md bg-sky-600 hover:bg-sky-700 text-sm">Edit</a>
@@ -39,4 +39,5 @@
 <div class="mt-4">
     {{ $posts->links('vendor.pagination.custom') }}
 </div>
+
 @endsection
