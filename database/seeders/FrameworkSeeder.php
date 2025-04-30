@@ -25,7 +25,8 @@ class FrameworkSeeder extends Seeder
             'Lavarel',
             'FastAPI',
             'Flutter',
-            'No Framework',
+            'React',
+            'Vue',
         ];
 
         foreach ($frameworks as $name) {

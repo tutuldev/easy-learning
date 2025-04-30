@@ -5,53 +5,16 @@
             <div class="swiper-slide !w-auto">
                 <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">HTML </a>
             </div>
+            @foreach($topics as $topic)
             <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS </a>
+            <a href="{{ route('posts.topic', $topic->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $topic->name }} </a>
             </div>
+            @endforeach
+            @foreach($frameworks as $framework)
             <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">JavaScript </a>
+            <a href="{{ route('posts.framework', $framework->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $framework->name }} </a>
             </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">Python </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">HTML </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">JavaScript </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">Python </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">HTML </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">JavaScript </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">Python </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">HTML </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">JavaScript </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">Python </a>
-            </div>
-
-
+            @endforeach
 
         </div>
 

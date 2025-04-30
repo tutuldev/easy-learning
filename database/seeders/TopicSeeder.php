@@ -13,7 +13,7 @@ class TopicSeeder extends Seeder
      */
     public function run(): void
     {
-       
+
         Topic::query()->delete();
 
 
@@ -24,7 +24,9 @@ class TopicSeeder extends Seeder
             'Python',
             'Java Script',
             'Dart',
-            'Database',
+            'SQL',
+            'MongoDB',
+            
 
         ];
 

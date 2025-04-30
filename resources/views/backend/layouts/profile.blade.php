@@ -1,5 +1,5 @@
   <!-- Profile Section -->
-  <div class="relative">
+  <div class="relative z-50">
     <button id="profile-btn" class="flex items-center space-x-2 focus:outline-none">
       <img class="w-8 h-8 rounded-full" src="https://fastly.picsum.photos/id/866/200/300.jpg?hmac=rcadCENKh4rD6MAp6V_ma-AyWv641M4iiOpe1RyFHeI" alt="Profile Picture" />
       <span>{{ Auth::user()->name }}</span>
