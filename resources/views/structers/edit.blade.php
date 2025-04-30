@@ -1,4 +1,6 @@
 @extends('backend.app')
+@section('title', 'Edit Structer')
+
 @section('content')
 <h2 class="mt-16 text-2xl font-semibold">Edit Structer</h2>
 <a href="{{ route('structers.index') }}" class="text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block">

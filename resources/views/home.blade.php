@@ -1,5 +1,6 @@
 
 @extends('frontend.app')
+@section('title', 'Home')
 @section('content')
     {{-- banner section start  --}}
     @include('frontend.layouts.banner')

@@ -1,5 +1,5 @@
 @extends('backend.app')
-
+@section('title', 'Show Topic')
 @section('content')
     <div class="max-w-xl mx-auto mt-20 p-6 bg-white rounded shadow">
         <h2 class="text-2xl font-bold mb-4">Topic Details</h2>

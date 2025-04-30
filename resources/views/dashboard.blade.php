@@ -1,4 +1,5 @@
 @extends('backend.app')
+@section('title', 'Dashboard')
 @section('content')
 {{-- dashbord topbar  --}}
 {{-- @include('backend.layouts.fixednav') --}}

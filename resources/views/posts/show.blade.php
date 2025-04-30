@@ -1,4 +1,5 @@
 @extends('backend.app')
+@section('title', 'Show Post')
 
 @section('content')
 <div class="max-w-3xl mx-auto mt-20 p-6 bg-white rounded shadow">

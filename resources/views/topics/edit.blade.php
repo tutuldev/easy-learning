@@ -1,4 +1,5 @@
 @extends('backend.app')
+@section('title', 'Edit Topic')
 
 @section('content')
 <h2 class="text-2xl font-semibold mt-16">Edit Topic</h2>

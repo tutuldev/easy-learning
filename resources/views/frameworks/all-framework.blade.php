@@ -1,4 +1,6 @@
 @extends('backend.app')
+@section('title', 'All Framework')
+
 @section('content')
 <h2 class="text-2xl font-semibold mt-16">Frameworks</h2>
 <a href="{{ route('frameworks.create') }}" class=" text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block">Add<span class="material-symbols-outlined align-middle text-sm mx-2">add</span></a>

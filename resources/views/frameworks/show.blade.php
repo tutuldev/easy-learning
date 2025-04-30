@@ -1,4 +1,5 @@
 @extends('backend.app')
+@section('title', 'Show Framework')
 
 @section('content')
     <div class="max-w-xl mx-auto mt-20 p-6 bg-white rounded shadow">

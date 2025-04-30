@@ -1,4 +1,6 @@
 @extends('backend.app')
+@section('title', 'Create Framework')
+
 @section('content')
 <h2 class="text-2xl font-semibold mt-16">Add Framework</h2>
 <a href="/dashboard" class="text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block"><span class="material-symbols-outlined align-middle text-xs mx-2">arrow_back_ios</span>Back</a>

@@ -1,4 +1,5 @@
 @extends('backend.app')
+@section('title', 'Edit Post')
 
 @section('content')
 

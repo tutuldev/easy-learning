@@ -1,4 +1,5 @@
 @extends('backend.app')
+@section('title', 'Create Post')
 
 @section('content')
 <h2 class="mt-16 text-2xl font-semibold">Add Post</h2>

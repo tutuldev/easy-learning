@@ -1,4 +1,6 @@
 @extends('backend.app')
+@section('title', 'All Structer')
+
 @section('content')
 <h2 class="text-2xl font-semibold mt-16">Structers</h2>
 <a href="{{ route('structers.create') }}" class="text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block">
