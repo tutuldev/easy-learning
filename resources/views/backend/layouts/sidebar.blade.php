@@ -35,7 +35,7 @@
                     ['title' => 'Topics & Language', 'id' => 'dropdown2', 'items' => $topics, 'route' => 'topics'],
                     ['title' => 'Frameworks', 'id' => 'dropdown3', 'items' => $frameworks, 'route' => 'frameworks'],
                     ['title' => 'Structers', 'id' => 'dropdown4', 'items' => $structers, 'route' => 'structers'],
-                    ['title' => 'Posts', 'id' => 'dropdown5', 'items' => $posts, 'route' => 'posts'],
+                    ['title' => 'Posts', 'id' => 'dropdown5', 'items' => $posts->take(5), 'route' => 'posts'], // Posts limited to 5
                 ];
             @endphp
 

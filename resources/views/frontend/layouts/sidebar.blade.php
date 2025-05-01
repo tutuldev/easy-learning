@@ -15,20 +15,20 @@
         <!-- Sidebar Content -->
         <div class="py-2 space-y-1 pr-1">
             <!-- Dashboard -->
-            <a href="/dashboard"
-               class="block py-2.5 px-4 rounded {{ Request::is('dashboard') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }}">
-                Dashboard
+            <a href=""
+            class="block py-2.5 px-4 rounded {{ Request::is("posts/topic/$pageTitle") ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }} truncate">
+            {{ $pageTitle ?? 'Topic' }} Home
             </a>
 
-            <!-- Front Page -->
-            <a href="/" class="block">
-                <div class="flex justify-between items-center py-2.5 px-4 rounded {{ Request::is('/') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }} cursor-pointer">
-                    <span>Front Page</span>
-                    <span class="material-symbols-outlined text-sm">home</span>
-                </div>
-            </a>
 
-         
+            @foreach($posts as $post)
+            <a href="{{ route('posts.topic', $post->slug) }}"
+               class="block py-2.5 px-4 rounded
+                {{ Request::is('posts/topic/' . $post->title) ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }} truncate">
+                {{$post->title}}
+            </a>
+            @endforeach
+
             <!-- Settings -->
             <a href="/settings"
                class="flex justify-between items-center w-full py-2.5 px-4 rounded {{ Request::is('settings') ? 'bg-green-600 text-white' : 'hover:bg-gray-300' }}">

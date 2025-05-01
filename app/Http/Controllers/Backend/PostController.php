@@ -128,19 +128,35 @@ class PostController extends Controller
 
         return view('posts.filterpost', compact('posts', 'topicName'));
     }
+
+
+
     // filter by topic for frontend
     public function filterByTopicFront($topicName)
     {
-        $posts = Post::whereHas('topic', function($query) use ($topicName) {
-            $query->where('name', $topicName);
-        })->get();
+
+        $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->first();
+
+        if (!$topic) {
+            abort(404, 'Topic not found');
+        }
+
+        $posts = Post::where('topic_id', $topic->id)->get();
+
+        $topics = Topic::withCount('posts')->get();
 
         return view('filterpost', [
             'posts' => $posts,
-            'topicName' => $topicName,
-            'pageTitle' => ucfirst($topicName)
+            'topics' => $topics,
+            'topicName' => ucfirst($topicName),
+            'pageTitle' => ucfirst($topicName),
         ]);
     }
+
+
+
+
+
 
     // Filter by Category
     public function filterByCategory($categoryName)
@@ -172,3 +188,4 @@ class PostController extends Controller
         return view('posts.filterpost', compact('posts', 'frameworkName'));
     }
 }
+

@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider
                 $structer->posts_count = Post::where('structer_id', $structer->id)->count();
             }
 
-            $posts = Post::latest()->take(5)->get();
+            $posts = Post::latest()->get();
 
             // Pass data to views
             $view->with([
