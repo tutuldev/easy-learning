@@ -119,7 +119,8 @@ class PostController extends Controller
                          ->with('status', 'Post deleted successfully.');
     }
 
-    public function filterByTopic($topicName)
+    // filter by topic for backend
+    public function filterByTopicBack($topicName)
     {
         $posts = Post::whereHas('topic', function($query) use ($topicName) {
             $query->where('name', $topicName);
@@ -127,6 +128,20 @@ class PostController extends Controller
 
         return view('posts.filterpost', compact('posts', 'topicName'));
     }
+    // filter by topic for frontend
+    public function filterByTopicFront($topicName)
+    {
+        $posts = Post::whereHas('topic', function($query) use ($topicName) {
+            $query->where('name', $topicName);
+        })->get();
+
+        return view('filterpost', [
+            'posts' => $posts,
+            'topicName' => $topicName,
+            'pageTitle' => ucfirst($topicName)
+        ]);
+    }
+
     // Filter by Category
     public function filterByCategory($categoryName)
     {

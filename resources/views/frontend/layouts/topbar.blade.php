@@ -3,73 +3,16 @@
     {{-- swiper js start  --}}
     <div class="swiper container cursor-pointer ">
         <div class="swiper-wrapper py-1 ">
+            @foreach($topics as $topic)
             <div class="swiper-slide !w-auto">
-
-                <a href="#" class="px-4 py-2  hover:bg-black text-white  text-sm ">HTML</a>
+            <a href="{{ route('posts.topic', $topic->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $topic->name }} </a>
             </div>
+            @endforeach
+            @foreach($frameworks as $framework)
             <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
+            <a href="{{ route('posts.framework', $framework->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $framework->name }} </a>
             </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS</a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS How to use this is </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS How to use this is </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS How to use this is </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS How to use this is </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS How to use this is </a>
-            </div>
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">CSS How to use this is </a>
-            </div>
+            @endforeach
         </div>
 
         <!-- Add next and previous buttons -->

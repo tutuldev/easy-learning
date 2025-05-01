@@ -2,12 +2,10 @@
 <div class="bg-[#261F1E]">
     <div class="swiper container  cursor-pointer z-30">
         <div class="swiper-wrapper py-3  ">
-            <div class="swiper-slide !w-auto">
-                <a href="#" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">HTML </a>
-            </div>
+
             @foreach($topics as $topic)
             <div class="swiper-slide !w-auto">
-            <a href="{{ route('posts.topic', $topic->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $topic->name }} </a>
+            <a href="{{ route('admin.posts.topic', $topic->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $topic->name }} </a>
             </div>
             @endforeach
             @foreach($frameworks as $framework)

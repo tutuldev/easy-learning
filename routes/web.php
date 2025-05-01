@@ -30,7 +30,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('frameworks', FrameworkController::class);
     Route::resource('structers', StructerController::class);
     Route::resource('posts', PostController::class);
-    Route::get('/posts/topic/{topic}', [PostController::class, 'filterByTopic'])->name('posts.topic');
+    Route::get('/admin/posts/topic/{topic}', [PostController::class, 'filterByTopicBack'])->name('admin.posts.topic');
+    Route::get('/posts/topic/{topic}', [PostController::class, 'filterByTopicFront'])->name('posts.topic');
     Route::get('/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('posts.category');
     Route::get('/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('posts.structer');
     Route::get('/posts/framework/{framework}', [PostController::class, 'filterByFramework'])->name('posts.framework');

@@ -102,7 +102,7 @@
         });
 
         // for layout
-        function updateSidebarHeight() {
+      function updateSidebarHeight() {
       const footer = document.querySelector('footer');
       const sidebar = document.querySelector('#sidebar');
       const footerRect = footer.getBoundingClientRect();

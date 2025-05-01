@@ -2,7 +2,6 @@
 @section('title', 'Dashboard')
 @section('content')
 {{-- dashbord topbar  --}}
-{{-- @include('backend.layouts.fixednav') --}}
 
 {{-- dashbord topbar  end--}}
 <div class="flex-1 dashbord-main pt-2">
@@ -35,7 +34,7 @@
     <h3 class="text-xl py-4 font-bold">Topic details</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         @foreach($topics as $topic)
-        <a href="{{ route('posts.topic', $topic->name) }}" class="block">
+        <a href="{{ route('admin.posts.topic', $topic->name) }}" class="block">
             <div class="bg-white rounded-lg p-6 shadow flex justify-between items-center">
                 <span>{{ $topic->name }}</span>
                 <span>post-{{ $topic->posts_count }}</span>

@@ -18,15 +18,15 @@ class TopicSeeder extends Seeder
 
 
         $topics = [
-            'PHP',
             'HTML',
+            'PHP',
             'CSS',
             'Python',
             'Java Script',
             'Dart',
             'SQL',
             'MongoDB',
-            
+
 
         ];
 
