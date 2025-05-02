@@ -1,17 +1,27 @@
  {{-- top bar start --}}
- <section class="bg-[#261F1E] fixed top-14 left-0 w-full z-40 py-1">
+ <section class="bg-[#261F1E] fixed top-14 left-0 w-full z-40 ">
     {{-- swiper js start  --}}
     <div class="swiper container cursor-pointer ">
-        <div class="swiper-wrapper py-1 ">
+
+        <div class="swiper-wrapper py-2">
             @foreach($topics as $topic)
-            <div class="swiper-slide !w-auto">
-            <a href="{{ route('posts.topic', $topic->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $topic->name }} </a>
-            </div>
+                <div class="swiper-slide !w-auto">
+                    <a href="{{ route('posts.topic', $topic->name) }}"
+                       class="px-4 py-3 whitespace-nowrap text-sm
+                       {{ Request::is('posts/topic/' . $topic->name) ? 'bg-green-600 text-white' : 'hover:bg-black text-white' }}">
+                        {{ $topic->name }}
+                    </a>
+                </div>
             @endforeach
+
             @foreach($frameworks as $framework)
-            <div class="swiper-slide !w-auto">
-            <a href="{{ route('posts.framework', $framework->name) }}" class="px-4 py-2 whitespace-nowrap hover:bg-black text-white  text-sm ">{{ $framework->name }} </a>
-            </div>
+                <div class="swiper-slide !w-auto">
+                    <a href="{{ route('posts.framework', $framework->name) }}"
+                       class="px-4 py-2 whitespace-nowrap text-sm
+                       {{ Request::is('posts/framework/' . $framework->name) ? 'bg-green-600 text-white' : 'hover:bg-black text-white' }}">
+                        {{ $framework->name }}
+                    </a>
+                </div>
             @endforeach
         </div>
 
