@@ -19,10 +19,10 @@ class TopicSeeder extends Seeder
 
         $topics = [
             'HTML',
-            'PHP',
             'CSS',
-            'Python',
             'Java Script',
+            'PHP',
+            'Python',
             'Dart',
             'SQL',
             'MongoDB',

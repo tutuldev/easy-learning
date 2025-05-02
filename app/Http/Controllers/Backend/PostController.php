@@ -21,17 +21,16 @@ class PostController extends Controller
 
     public function create()
     {
-        $categories = Category::all();
-        $frameworks = Framework::all();
-        $topics     = Topic::all();
-        $structers  = Structer::all();
-
-        return view('posts.create', compact('categories', 'frameworks', 'topics', 'structers'));
+        return view('posts.create', [
+            'categories' => Category::all(),
+            'frameworks' => Framework::all(),
+            'topics'     => Topic::all(),
+            'structers'  => Structer::all(),
+        ]);
     }
 
     public function store(Request $request)
     {
-        // return $request->all();
         $request->validate([
             'title'       => 'required|string|max:255',
             'description' => 'required|string',
@@ -42,10 +41,9 @@ class PostController extends Controller
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $imagePath = null;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads/posts', 'public');
-        }
+        $imagePath = $request->hasFile('image')
+            ? $request->file('image')->store('uploads/posts', 'public')
+            : null;
 
         Post::create([
             'title'        => $request->title,
@@ -59,8 +57,7 @@ class PostController extends Controller
             'image'        => $imagePath,
         ]);
 
-        return redirect()->route('posts.index')
-                         ->with('status', 'Post created successfully.');
+        return redirect()->route('posts.index')->with('status', 'Post created successfully.');
     }
 
     public function show(Post $post)
@@ -70,12 +67,13 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $categories = Category::all();
-        $frameworks = Framework::all();
-        $topics     = Topic::all();
-        $structers  = Structer::all();
-
-        return view('posts.edit', compact('post', 'categories', 'frameworks', 'topics', 'structers'));
+        return view('posts.edit', [
+            'post'       => $post,
+            'categories' => Category::all(),
+            'frameworks' => Framework::all(),
+            'topics'     => Topic::all(),
+            'structers'  => Structer::all(),
+        ]);
     }
 
     public function update(Request $request, Post $post)
@@ -90,10 +88,9 @@ class PostController extends Controller
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        $imagePath = $post->image;
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads/posts', 'public');
-        }
+        $imagePath = $request->hasFile('image')
+            ? $request->file('image')->store('uploads/posts', 'public')
+            : $post->image;
 
         $post->update([
             'title'        => $request->title,
@@ -107,42 +104,20 @@ class PostController extends Controller
             'image'        => $imagePath,
         ]);
 
-        return redirect()->route('posts.index')
-                         ->with('status', 'Post updated successfully.');
+        return redirect()->route('posts.index')->with('status', 'Post updated successfully.');
     }
 
     public function destroy(Post $post)
     {
         $post->delete();
-
-        return redirect()->route('posts.index')
-                         ->with('status', 'Post deleted successfully.');
+        return redirect()->route('posts.index')->with('status', 'Post deleted successfully.');
     }
 
-    // filter by topic for backend
-    public function filterByTopicBack($topicName)
-    {
-        $posts = Post::whereHas('topic', function($query) use ($topicName) {
-            $query->where('name', $topicName);
-        })->get();
-
-        return view('posts.filterpost', compact('posts', 'topicName'));
-    }
-
-
-
-    // filter by topic for frontend
+    // ✅ Filter by Topic (Frontend)
     public function filterByTopicFront($topicName)
     {
-
-        $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->first();
-
-        if (!$topic) {
-            abort(404, 'Topic not found');
-        }
-
+        $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->firstOrFail();
         $posts = Post::where('topic_id', $topic->id)->get();
-
         $topics = Topic::withCount('posts')->get();
 
         return view('filterpost', [
@@ -153,39 +128,54 @@ class PostController extends Controller
         ]);
     }
 
-
-
-
-
-
-    // Filter by Category
-    public function filterByCategory($categoryName)
+    // ✅ Filter by Framework (Frontend)
+    public function filterByFrameworkFront($frameworkName)
     {
-        $posts = Post::whereHas('category', function($query) use ($categoryName) {
-            $query->where('name', $categoryName);
-        })->get();
+        $framework = Framework::whereRaw('LOWER(name) = ?', [strtolower($frameworkName)])->firstOrFail();
+        $posts = Post::where('framework_id', $framework->id)->get();
+        $frameworks = Framework::withCount('posts')->get();
 
-        return view('posts.filterpost', compact('posts', 'categoryName'));
+        return view('filterpost', [
+            'posts' => $posts,
+            'frameworks' => $frameworks,
+            'frameworkName' => ucfirst($frameworkName),
+            'pageTitle' => ucfirst($frameworkName),
+            'context' => 'framework',
+        ]);
     }
 
-    // Filter by Structure
-    public function filterByStructer($structerName)
+    // ✅ Single Post View by Topic
+    public function showFilteredPost($topicName, $slug)
     {
-        $posts = Post::whereHas('structer', function($query) use ($structerName) {
-            $query->where('name', $structerName);
-        })->get();
+        $post = Post::where('slug', $slug)
+                    ->whereHas('topic', function ($query) use ($topicName) {
+                        $query->whereRaw('LOWER(name) = ?', [strtolower($topicName)]);
+                    })->firstOrFail();
 
-        return view('posts.filterpost', compact('posts', 'structerName'));
+        $posts = Post::where('topic_id', $post->topic_id)->get();
+
+        return view('single-post', [
+            'post' => $post,
+            'posts' => $posts,
+            'pageTitle' => ucfirst($topicName),
+        ]);
     }
 
-    // Filter by Framework
-    public function filterByFramework($frameworkName)
+    // ✅ Single Post View by Framework
+    public function showFilteredPostByFramework($frameworkName, $slug)
     {
-        $posts = Post::whereHas('framework', function($query) use ($frameworkName) {
-            $query->where('name', $frameworkName);
-        })->get();
+        $post = Post::where('slug', $slug)
+                    ->whereHas('framework', function ($query) use ($frameworkName) {
+                        $query->whereRaw('LOWER(name) = ?', [strtolower($frameworkName)]);
+                    })->firstOrFail();
 
-        return view('posts.filterpost', compact('posts', 'frameworkName'));
+        $posts = Post::where('framework_id', $post->framework_id)->get();
+
+        return view('single-post', [
+            'post' => $post,
+            'posts' => $posts,
+            'pageTitle' => ucfirst($frameworkName),
+            'context' => 'framework',
+        ]);
     }
 }
-

@@ -22,7 +22,7 @@
     <h3 class="text-xl py-4 font-bold">Framework details</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
     @foreach($frameworks as $framework)
-        <a href="{{ route('posts.framework', $framework->name) }}" class="block">
+        <a href="{{ route('admin.posts.framework', $framework->name) }}" class="block">
             <div class="bg-white rounded-lg p-6 shadow flex justify-between items-center">
                 <span>{{ $framework->name }}</span>
                 <span>post-{{ $framework->posts_count }}</span>
