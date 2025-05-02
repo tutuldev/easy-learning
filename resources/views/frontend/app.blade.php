@@ -103,6 +103,45 @@
     // Initialize on page load
     document.addEventListener('DOMContentLoaded', updateSidebarHeight);
         // end layout js
+
+
+        // for menu
+        const btn = document.getElementById('menu-btn');
+        const sidebar = document.getElementById('sidebar');
+
+        // Toggle sidebar on button click
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent click from bubbling to document
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Click outside to close sidebar
+        document.addEventListener('click', function(e) {
+            const isClickInsideSidebar = sidebar.contains(e.target);
+            const isClickOnButton = btn.contains(e.target);
+
+            if (!isClickInsideSidebar && !isClickOnButton) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+
+        // Dropdown toggler
+        function toggleDropdown(id) {
+            const dropdown = document.getElementById(id);
+            const icon = document.getElementById(`${id}-icon`);
+            dropdown.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // sidebar close by cross button
+        function hideSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.add('-translate-x-full');
+        }
+
+
+   
+
     </script>
 </body>
 

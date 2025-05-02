@@ -61,7 +61,7 @@
                     </li>
                 </ul>
                 {{-- menu  --}}
-                <div class="menu  2xl:hidden">
+                <div id="menu-btn" class="menu  md:hidden">
                     <span class="material-symbols-outlined text-2xl text-gray-700 cursor-pointer hover:text-blue-500 transition">menu</span>
 
                 </div>
