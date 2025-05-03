@@ -8,9 +8,9 @@
     <h3 class="text-xl pb-4 font-bold">Category details</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
     @foreach($categories as $category)
-        <a href="{{ route('posts.category', $category->name) }}" class="block">
+        <a href="{{ route('admin.posts.category', $category->name) }}" class="block">
             <div class="bg-white rounded-lg p-6 shadow flex justify-between items-center">
-                <span>{{ $category->name }}</span>
+                <span>{{ $category->name }}2</span>
                 <span>post-{{ $category->posts_count }}</span>
             </div>
         </a>
@@ -45,7 +45,7 @@
     <h3 class="text-xl py-4 font-bold">Structer details</h3>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
         @foreach($structers as $structer)
-        <a href="{{ route('posts.structer', $structer->name) }}" class="block">
+        <a href="{{ route('admin.posts.structer', $structer->name) }}" class="block">
             <div class="bg-white rounded-lg p-6 shadow flex justify-between items-center">
                 <span>{{ $structer->name }}</span>
                 <span>post-{{ $structer->posts_count }}</span>

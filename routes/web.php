@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('frameworks', FrameworkController::class);
     Route::resource('structers', StructerController::class);
     Route::resource('posts', PostController::class);
+
     Route::get('/admin/posts/topic/{topic}', [PostController::class, 'filterByTopicBack'])->name('admin.posts.topic');
     Route::get('/posts/topic/{topic}/{slug}', [PostController::class, 'showFilteredPost'])->name('posts.topic.show');
     Route::get('/posts/topic/{topic}', [PostController::class, 'filterByTopicFront'])->name('posts.topic');
@@ -39,8 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/posts/framework/{framework}', [PostController::class, 'filterByFrameworkFront'])->name('posts.framework');
 
 
-    Route::get('/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('posts.category');
-    Route::get('/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('posts.structer');
+    Route::get('/admin/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('admin.posts.category');
+    Route::get('/admin/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('admin.posts.structer');
 
 });
 

@@ -1,5 +1,5 @@
 @extends('backend.app')
-@section('title', 'Show filted post')
+@section('title', $title  ?? 'Topics')
 
 @section('content')
 <h2 class="text-2xl font-semibold mt-16">Filtered Posts</h2>

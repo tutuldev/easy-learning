@@ -24,7 +24,7 @@
                 <td class="px-4 py-2 border">{{ $topic->id }}</td>
                 <td class="px-4 py-2 border">{{ $topic->name }}</td>
                 <td class="px-4 py-2 border">
-                    <a href="{{ route('posts.topic', $topic->name) }}">{{ $topic->name }}</a>
+                    <a href="{{ route('admin.posts.topic', $topic->name) }}">{{ $topic->name }}</a>
                 </td>
                 <td class="flex space-x-4 justify-center">
                     <a href="{{ route('topics.show', $topic) }}" class="text-white px-2 py-1 rounded-md bg-indigo-600 hover:bg-indigo-700 text-sm">Show</a>

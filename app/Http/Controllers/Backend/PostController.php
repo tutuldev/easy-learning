@@ -113,6 +113,55 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('status', 'Post deleted successfully.');
     }
 
+       // filter in  backend start
+      // Filter by Topic
+    public function filterByTopicBack($topicName)
+    {
+        $posts = Post::whereHas('topic', function($query) use ($topicName) {
+            $query->where('name', $topicName);
+        })->get();
+
+        $title =  $topicName;
+        return view('posts.filterpost', compact('posts', 'title'));
+    }
+
+    // Filter by Category
+    public function filterByCategory($categoryName)
+    {
+        $posts = Post::whereHas('category', function($query) use ($categoryName) {
+            $query->where('name', $categoryName);
+        })->get();
+
+        $title = $categoryName;
+        return view('posts.filterpost', compact('posts', 'title'));
+    }
+
+    // Filter by Structure
+    public function filterByStructer($structerName)
+    {
+        $posts = Post::whereHas('structer', function($query) use ($structerName) {
+            $query->where('name', $structerName);
+        })->get();
+
+        $title =  $structerName;
+        return view('posts.filterpost', compact('posts', 'title'));
+    }
+
+    // Filter by Framework
+    public function filterByFramework($frameworkName)
+    {
+        $posts = Post::whereHas('framework', function($query) use ($frameworkName) {
+            $query->where('name', $frameworkName);
+        })->get();
+
+        $title =  $frameworkName;
+        return view('posts.filterpost', compact('posts', 'title'));
+    }
+
+        // filter in  backend end
+
+
+
     // ✅ Filter by Topic (Frontend)
     public function filterByTopicFront($topicName)
     {
