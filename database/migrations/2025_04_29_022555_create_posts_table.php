@@ -15,7 +15,7 @@ return new class extends Migration
             $table->text('description');
 
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
-            $table->foreignId('framework_id')->constrained('frameworks')->onDelete('cascade');
+            $table->foreignId('framework_id')->nullable()->constrained('frameworks')->onDelete('cascade');//nullable
             $table->foreignId('topic_id')->constrained('topics')->onDelete('cascade');
             $table->foreignId('structer_id')->constrained('structers')->onDelete('cascade');
 

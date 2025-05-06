@@ -22,6 +22,7 @@ class PostController extends Controller
     public function create()
     {
         return view('posts.create', [
+            'post' => new Post(), // নতুন Post Object পাঠানো
             'categories' => Category::all(),
             'frameworks' => Framework::all(),
             'topics'     => Topic::all(),
@@ -32,10 +33,10 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'       => 'required|string|max:255',
+            'title'       => 'required|string|max:25',
             'description' => 'required|string',
             'category'    => 'required|exists:categories,id',
-            'framework'   => 'required|exists:frameworks,id',
+            'framework'   => 'nullable|exists:frameworks,id',
             'topic'       => 'required|exists:topics,id',
             'structer'    => 'required|exists:structers,id',
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
@@ -50,7 +51,7 @@ class PostController extends Controller
             'slug'         => Str::slug($request->title),
             'description'  => $request->description,
             'category_id'  => $request->category,
-            'framework_id' => $request->framework,
+            'framework_id' => $request->framework ?? null,
             'topic_id'     => $request->topic,
             'structer_id'  => $request->structer,
             'code'         => $request->code,
@@ -79,10 +80,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $request->validate([
-            'title'       => 'required|string|max:255',
+            'title'       => 'required|string|max:25',
             'description' => 'required|string',
             'category'    => 'required|exists:categories,id',
-            'framework'   => 'required|exists:frameworks,id',
+            'framework'   => 'nullable|exists:frameworks,id',
             'topic'       => 'required|exists:topics,id',
             'structer'    => 'required|exists:structers,id',
             'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
@@ -97,7 +98,7 @@ class PostController extends Controller
             'slug'         => Str::slug($request->title),
             'description'  => $request->description,
             'category_id'  => $request->category,
-            'framework_id' => $request->framework,
+            'framework_id' => $request->framework ?? null,
             'topic_id'     => $request->topic,
             'structer_id'  => $request->structer,
             'code'         => $request->code,
@@ -161,38 +162,6 @@ class PostController extends Controller
         // filter in  backend end
 
 
-
-    // ✅ Filter by Topic (Frontend)
-    // public function filterByTopicFront($topicName)
-    // {
-    //     $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->firstOrFail();
-    //     $posts = Post::where('topic_id', $topic->id)->get();
-    //     $topics = Topic::withCount('posts')->get();
-
-    //     return view('filterpost', [
-    //         'posts' => $posts,
-    //         'topics' => $topics,
-    //         'topicName' => ucfirst($topicName),
-    //         'pageTitle' => ucfirst($topicName),
-    //     ]);
-    // }
-
-    // // ✅ Filter by Framework (Frontend)
-    // public function filterByFrameworkFront($frameworkName)
-    // {
-    //     $framework = Framework::whereRaw('LOWER(name) = ?', [strtolower($frameworkName)])->firstOrFail();
-    //     $posts = Post::where('framework_id', $framework->id)->get();
-    //     $frameworks = Framework::withCount('posts')->get();
-
-    //     return view('filterpost', [
-    //         'posts' => $posts,
-    //         'frameworks' => $frameworks,
-    //         'frameworkName' => ucfirst($frameworkName),
-    //         'pageTitle' => ucfirst($frameworkName),
-    //         'context' => 'framework',
-    //     ]);
-    // }
-
     public function filterByTopicFront($topicName)
     {
         $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->firstOrFail();
@@ -250,60 +219,6 @@ class PostController extends Controller
     }
 
 
-    // public function showFilteredPost($topicName, $slug)
-    // {
-    //     $post = Post::where('slug', $slug)
-    //                 ->whereHas('topic', function ($query) use ($topicName) {
-    //                     $query->whereRaw('LOWER(name) = ?', [strtolower($topicName)]);
-    //                 })->firstOrFail();
-
-    //     $posts = Post::where('topic_id', $post->topic_id)->orderBy('id')->get();
-
-    //     $currentIndex = $posts->search(function ($item) use ($post) {
-    //         return $item->id === $post->id;
-    //     });
-
-    //     $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
-    //     $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
-
-    //     return view('single-post', [
-    //         'post' => $post,
-    //         'posts' => $posts,
-    //         'pageTitle' => ucfirst($topicName),
-    //         'previousPost' => $previousPost,
-    //         'nextPost' => $nextPost,
-    //         'context' => 'topic',
-    //     ]);
-    // }
-
-    // public function showFilteredPostByFramework($frameworkName, $slug)
-    // {
-    //     $post = Post::where('slug', $slug)
-    //                 ->whereHas('framework', function ($query) use ($frameworkName) {
-    //                     $query->whereRaw('LOWER(name) = ?', [strtolower($frameworkName)]);
-    //                 })->firstOrFail();
-
-    //     $posts = Post::where('framework_id', $post->framework_id)->orderBy('id')->get();
-
-    //     $currentIndex = $posts->search(function ($item) use ($post) {
-    //         return $item->id === $post->id;
-    //     });
-
-    //     $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
-    //     $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
-
-    //     return view('single-post', [
-    //         'post' => $post,
-    //         'posts' => $posts,
-    //         'pageTitle' => ucfirst($frameworkName),
-    //         'previousPost' => $previousPost,
-    //         'nextPost' => $nextPost,
-    //         'context' => 'framework',
-    //     ]);
-    // }
-
-
-
     public function showFilteredPost($topicName, $slug)
     {
         $post = Post::where('slug', $slug)
@@ -341,7 +256,7 @@ class PostController extends Controller
 
         $currentIndex = $posts->search(fn($item) => $item->id === $post->id);
 
-       
+
         $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : (object) ['framework' => (object) ['name' => $frameworkName], 'slug' => ''];
 
         $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;

@@ -12,94 +12,100 @@
     @csrf
     @method('PUT')
 
-    <!-- Title -->
-    <div>
-        <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Post Title</label>
-        <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}"
-               class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
-    </div>
+  <!-- Title -->
+<div>
+    <label for="title" class="block text-sm font-medium text-gray-700 mb-1">Post Title</label>
+    <input type="text" id="title" name="title" value="{{ old('title', $post->title) }}"
+           class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    @error('title')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-    <!-- Description -->
-    <div>
-        <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-        <textarea id="description" name="description" rows="10"
-                  class="w-full border border-gray-300 rounded p-2">{{ old('description', $post->description) }}</textarea>
-    </div>
+<!-- Description -->
+<div>
+    <label for="description" class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+    <textarea id="description" name="description" rows="10"
+              class="w-full border border-gray-300 rounded p-2">{{ old('description', $post->description) }}</textarea>
+    @error('description')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-    <!-- Category -->
-    <div>
-        <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-        <select name="category" id="category"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select Category</option>
-            @foreach ($categories as $category)
-                <option value="{{ $category->id }}" {{ $post->category_id == $category->id ? 'selected' : '' }}>
-                    {{ $category->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+<!-- Category -->
+<div>
+    <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+    <select name="category" id="category"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        @foreach ($categories as $category)
+            <option value="{{ $category->id }}" {{ old('category', $post->category_id) == $category->id ? 'selected' : '' }}>
+                {{ $category->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('category')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-    <!-- Framework -->
-    <div>
-        <label for="framework" class="block text-sm font-medium text-gray-700 mb-1">Framework</label>
-        <select name="framework" id="framework"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select Framework</option>
-            @foreach ($frameworks as $framework)
-                <option value="{{ $framework->id }}" {{ $post->framework_id == $framework->id ? 'selected' : '' }}>
-                    {{ $framework->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+<!-- Framework -->
+<div>
+    <label for="framework" class="block text-sm font-medium text-gray-700 mb-1">Framework</label>
+    <select name="framework" id="framework"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="">Select Framework</option>
+        @foreach ($frameworks as $framework)
+            <option value="{{ $framework->id }}" {{ old('framework', $post->framework_id) == $framework->id ? 'selected' : '' }}>
+                {{ $framework->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('framework')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-    <!-- Topic -->
-    <div>
-        <label for="topic" class="block text-sm font-medium text-gray-700 mb-1">Topic</label>
-        <select name="topic" id="topic"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select Topic</option>
-            @foreach ($topics as $topic)
-                <option value="{{ $topic->id }}" {{ $post->topic_id == $topic->id ? 'selected' : '' }}>
-                    {{ $topic->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+<!-- Topic -->
+<div>
+    <label for="topic" class="block text-sm font-medium text-gray-700 mb-1">Topic</label>
+    <select name="topic" id="topic"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        @foreach ($topics as $topic)
+            <option value="{{ $topic->id }}" {{ old('topic', $post->topic_id) == $topic->id ? 'selected' : '' }}>
+                {{ $topic->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('topic')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-    <!-- Structer -->
-    <div>
-        <label for="structer" class="block text-sm font-medium text-gray-700 mb-1">Structer</label>
-        <select name="structer" id="structer"
-                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <option value="">Select Structer</option>
-            @foreach ($structers as $structer)
-                <option value="{{ $structer->id }}" {{ $post->structer_id == $structer->id ? 'selected' : '' }}>
-                    {{ $structer->name }}
-                </option>
-            @endforeach
-        </select>
-    </div>
+<!-- Structer -->
+<div>
+    <label for="structer" class="block text-sm font-medium text-gray-700 mb-1">Structer</label>
+    <select name="structer" id="structer"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        @foreach ($structers as $structer)
+            <option value="{{ $structer->id }}" {{ old('structer', $post->structer_id) == $structer->id ? 'selected' : '' }}>
+                {{ $structer->name }}
+            </option>
+        @endforeach
+    </select>
+    @error('structer')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-    <!-- Code -->
-    <div>
-        <label for="code" class="block text-sm font-medium text-gray-700 mb-1">Code</label>
-        <textarea name="code" id="code" rows="6"
-                  class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">{{ old('code', $post->code) }}</textarea>
-    </div>
-
-    <!-- Image -->
-    <div>
-        <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Image</label>
-        @if ($post->image)
-            <div class="mb-2">
-                <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="h-20 rounded">
-            </div>
-        @endif
-        <input type="file" name="image"
-               class="block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer focus:outline-none" />
-    </div>
+<!-- Image -->
+<div>
+    <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Image</label>
+    <input type="file" name="image"
+           class="block w-full text-sm text-gray-900 border border-gray-300 rounded-md cursor-pointer focus:outline-none" />
+    @error('image')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
     <!-- Submit -->
     <button type="submit"

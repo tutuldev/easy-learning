@@ -50,7 +50,7 @@
                 <div class="mb-2"><strong>Title:</strong> {{ $post->title }}</div>
                 <div class="mb-2"><strong>Slug:</strong> {{ $post->slug }}</div>
                 <div class="mb-2"><strong>Category:</strong> {{ $post->category->name }}</div>
-                <div class="mb-2"><strong>Framework:</strong> {{ $post->framework->name }}</div>
+                <div class="mb-2"><strong>Framework:</strong> {{ $post->framework->name ?? 'No Framework' }}</div>
                 <div class="mb-2"><strong>Topic:</strong> {{ $post->topic->name }}</div>
                 <div class="mb-2"><strong>Structer:</strong> {{ $post->structer->name }}</div>
                 <div class="mb-2"><strong>Description:</strong> {!! nl2br(e($post->description)) !!}</div>
