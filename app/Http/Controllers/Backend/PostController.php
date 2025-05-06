@@ -163,37 +163,93 @@ class PostController extends Controller
 
 
     // ✅ Filter by Topic (Frontend)
+    // public function filterByTopicFront($topicName)
+    // {
+    //     $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->firstOrFail();
+    //     $posts = Post::where('topic_id', $topic->id)->get();
+    //     $topics = Topic::withCount('posts')->get();
+
+    //     return view('filterpost', [
+    //         'posts' => $posts,
+    //         'topics' => $topics,
+    //         'topicName' => ucfirst($topicName),
+    //         'pageTitle' => ucfirst($topicName),
+    //     ]);
+    // }
+
+    // // ✅ Filter by Framework (Frontend)
+    // public function filterByFrameworkFront($frameworkName)
+    // {
+    //     $framework = Framework::whereRaw('LOWER(name) = ?', [strtolower($frameworkName)])->firstOrFail();
+    //     $posts = Post::where('framework_id', $framework->id)->get();
+    //     $frameworks = Framework::withCount('posts')->get();
+
+    //     return view('filterpost', [
+    //         'posts' => $posts,
+    //         'frameworks' => $frameworks,
+    //         'frameworkName' => ucfirst($frameworkName),
+    //         'pageTitle' => ucfirst($frameworkName),
+    //         'context' => 'framework',
+    //     ]);
+    // }
+
     public function filterByTopicFront($topicName)
     {
         $topic = Topic::whereRaw('LOWER(name) = ?', [strtolower($topicName)])->firstOrFail();
-        $posts = Post::where('topic_id', $topic->id)->get();
+        $posts = Post::where('topic_id', $topic->id)->orderBy('id')->get();
         $topics = Topic::withCount('posts')->get();
+
+
+        $currentIndex = $posts->search(fn($item) => request()->route('slug') == $item->slug);
+
+        if ($currentIndex !== false) {
+            $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
+            $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
+        } else {
+            $previousPost = null;
+            $nextPost = $posts->first();
+        }
 
         return view('filterpost', [
             'posts' => $posts,
             'topics' => $topics,
             'topicName' => ucfirst($topicName),
             'pageTitle' => ucfirst($topicName),
+            'previousPost' => $previousPost,
+            'nextPost' => $nextPost,
+            'context' => 'topic',
         ]);
     }
 
-    // ✅ Filter by Framework (Frontend)
     public function filterByFrameworkFront($frameworkName)
     {
         $framework = Framework::whereRaw('LOWER(name) = ?', [strtolower($frameworkName)])->firstOrFail();
-        $posts = Post::where('framework_id', $framework->id)->get();
+        $posts = Post::where('framework_id', $framework->id)->orderBy('id')->get();
         $frameworks = Framework::withCount('posts')->get();
+
+
+        $currentIndex = $posts->search(fn($item) => request()->route('slug') == $item->slug);
+
+        if ($currentIndex !== false) {
+            $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
+            $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
+        } else {
+            $previousPost = null;
+            $nextPost = $posts->first();
+        }
 
         return view('filterpost', [
             'posts' => $posts,
             'frameworks' => $frameworks,
             'frameworkName' => ucfirst($frameworkName),
             'pageTitle' => ucfirst($frameworkName),
+            'previousPost' => $previousPost,
+            'nextPost' => $nextPost,
             'context' => 'framework',
         ]);
     }
 
-    // // ✅ Single Post View by Topic
+
     // public function showFilteredPost($topicName, $slug)
     // {
     //     $post = Post::where('slug', $slug)
@@ -201,16 +257,25 @@ class PostController extends Controller
     //                     $query->whereRaw('LOWER(name) = ?', [strtolower($topicName)]);
     //                 })->firstOrFail();
 
-    //     $posts = Post::where('topic_id', $post->topic_id)->get();
+    //     $posts = Post::where('topic_id', $post->topic_id)->orderBy('id')->get();
+
+    //     $currentIndex = $posts->search(function ($item) use ($post) {
+    //         return $item->id === $post->id;
+    //     });
+
+    //     $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
+    //     $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
 
     //     return view('single-post', [
     //         'post' => $post,
     //         'posts' => $posts,
     //         'pageTitle' => ucfirst($topicName),
+    //         'previousPost' => $previousPost,
+    //         'nextPost' => $nextPost,
+    //         'context' => 'topic',
     //     ]);
     // }
 
-    // // ✅ Single Post View by Framework
     // public function showFilteredPostByFramework($frameworkName, $slug)
     // {
     //     $post = Post::where('slug', $slug)
@@ -218,15 +283,26 @@ class PostController extends Controller
     //                     $query->whereRaw('LOWER(name) = ?', [strtolower($frameworkName)]);
     //                 })->firstOrFail();
 
-    //     $posts = Post::where('framework_id', $post->framework_id)->get();
+    //     $posts = Post::where('framework_id', $post->framework_id)->orderBy('id')->get();
+
+    //     $currentIndex = $posts->search(function ($item) use ($post) {
+    //         return $item->id === $post->id;
+    //     });
+
+    //     $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
+    //     $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
 
     //     return view('single-post', [
     //         'post' => $post,
     //         'posts' => $posts,
     //         'pageTitle' => ucfirst($frameworkName),
+    //         'previousPost' => $previousPost,
+    //         'nextPost' => $nextPost,
     //         'context' => 'framework',
     //     ]);
     // }
+
+
 
     public function showFilteredPost($topicName, $slug)
     {
@@ -237,11 +313,11 @@ class PostController extends Controller
 
         $posts = Post::where('topic_id', $post->topic_id)->orderBy('id')->get();
 
-        $currentIndex = $posts->search(function ($item) use ($post) {
-            return $item->id === $post->id;
-        });
+        $currentIndex = $posts->search(fn($item) => $item->id === $post->id);
 
-        $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
+
+        $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : (object) ['topic' => (object) ['name' => $topicName], 'slug' => ''];
+
         $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
 
         return view('single-post', [
@@ -263,11 +339,11 @@ class PostController extends Controller
 
         $posts = Post::where('framework_id', $post->framework_id)->orderBy('id')->get();
 
-        $currentIndex = $posts->search(function ($item) use ($post) {
-            return $item->id === $post->id;
-        });
+        $currentIndex = $posts->search(fn($item) => $item->id === $post->id);
 
-        $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : null;
+       
+        $previousPost = ($currentIndex > 0) ? $posts[$currentIndex - 1] : (object) ['framework' => (object) ['name' => $frameworkName], 'slug' => ''];
+
         $nextPost = ($currentIndex < $posts->count() - 1) ? $posts[$currentIndex + 1] : null;
 
         return view('single-post', [
@@ -276,8 +352,9 @@ class PostController extends Controller
             'pageTitle' => ucfirst($frameworkName),
             'previousPost' => $previousPost,
             'nextPost' => $nextPost,
-            'context' => 'framework', 
+            'context' => 'framework',
         ]);
     }
+
 
 }

@@ -11,7 +11,7 @@
         <main class="flex-1 px-4 mt-32">
             <h2 class="text-5xl my-10">{{$post->title}}</h2>
             <div class="flex justify-between">
-                @if ($previousPost)
+                @if ($previousPost && $previousPost->slug)
                     <a href="{{ $context === 'framework'
                                 ? route('posts.framework.show', [$previousPost->framework->name, $previousPost->slug])
                                 : route('posts.topic.show', [$previousPost->topic->name, $previousPost->slug]) }}"
@@ -20,10 +20,13 @@
                         Previous
                     </a>
                 @else
-                    <span class="opacity-50 btn flex items-center gap-1 pe-4 py-2 bg-gray-400 text-white rounded-md">
+                    <a href="{{ $context === 'framework'
+                                ? url('posts/framework/' . $previousPost->framework->name)
+                                : url('posts/topic/' . $previousPost->topic->name) }}"
+                        class="btn flex items-center gap-1 pe-4 py-2 bg-green-600 text-white rounded-md">
                         <span class="material-symbols-outlined">chevron_left</span>
                         Previous
-                    </span>
+                    </a>
                 @endif
 
                 @if ($nextPost)

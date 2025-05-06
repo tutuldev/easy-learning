@@ -11,17 +11,36 @@
         <main class="flex-1 px-4 mt-32">
             <h2 class="text-5xl my-10">{{$pageTitle}} </h2>
             <div class="flex justify-between">
-                <a href="/" class="btn flex items-center gap-1 pe-4 py-2 bg-green-600 text-white rounded-md">
-                    <span class="material-symbols-outlined">chevron_left</span>
-                    Home
-                </a>
+                @if ($previousPost)
+                    <a href="{{ $context === 'framework'
+                                ? route('posts.framework.show', [$previousPost->framework->name, $previousPost->slug])
+                                : route('posts.topic.show', [$previousPost->topic->name, $previousPost->slug]) }}"
+                        class="btn flex items-center gap-1 pe-4 py-2 bg-green-600 text-white rounded-md">
+                        <span class="material-symbols-outlined">chevron_left</span>
+                        Previous
+                    </a>
+                @else
+                    <span class="opacity-50 btn flex items-center gap-1 px-4 py-2 bg-gray-400 text-white rounded-md">
 
-                <a href="#" class="btn flex items-center gap-1 ps-4 py-2 bg-green-600 text-white rounded-md">
-                    Next
-                    <span class="material-symbols-outlined">chevron_right</span>
-                </a>
+                        home
+                    </span>
+                @endif
+
+                @if ($nextPost)
+                    <a href="{{ $context === 'framework'
+                                ? route('posts.framework.show', [$nextPost->framework->name, $nextPost->slug])
+                                : route('posts.topic.show', [$nextPost->topic->name, $nextPost->slug]) }}"
+                        class="btn flex items-center gap-1 ps-4 py-2 bg-green-600 text-white rounded-md">
+                        Next
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </a>
+                @else
+                    <span class="opacity-50 btn flex items-center gap-1 ps-4 py-2 bg-gray-400 text-white rounded-md">
+                        Next
+                        <span class="material-symbols-outlined">chevron_right</span>
+                    </span>
+                @endif
             </div>
-
         </main>
 
     </div>
