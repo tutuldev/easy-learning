@@ -96,6 +96,14 @@
     @enderror
 </div>
 
+
+ {{-- Code --}}
+ <div>
+    <label class="block font-semibold">Code</label>
+    <textarea name="code" class="w-full p-2 border font-mono rounded" rows="10" placeholder="Write your code here..." required>{{ old('code') }}</textarea>
+    @error('code') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+</div>
+
 <!-- Image -->
 <div>
     <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Image (Optional)</label>

@@ -96,6 +96,12 @@
         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
     @enderror
 </div>
+     {{-- Code --}}
+     <div>
+        <label class="block font-semibold">Code</label>
+        <textarea name="code" class="w-full p-2 border font-mono rounded" rows="8" required>{{ old('code', $post->code) }}</textarea>
+        @error('code') <p class="text-red-500 text-sm">{{ $message }}</p> @enderror
+    </div>
 
 <!-- Image -->
 <div>

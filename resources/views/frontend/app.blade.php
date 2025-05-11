@@ -15,6 +15,8 @@
     @vite('resources/css/custom.css')
     {{-- shiper js  --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    {{-- heighlight  --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css">
 
 </head>
 
@@ -42,6 +44,19 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
+     {{-- highliter js  --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+
+    @stack('scripts')
+    {{-- highliter js  --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            hljs.highlightAll(); // Initialize syntax highlighting
+        });
+    </script>
+    {{-- highliter js  end--}}
+
+
     <script>
         var swiper = new Swiper(".swiper", {
             slidesPerView: "auto",
@@ -140,7 +155,7 @@
         }
 
 
-   
+
 
     </script>
 </body>
