@@ -182,6 +182,7 @@ class PostController extends Controller
         return view('filterpost', [
             'posts' => $posts,
             'topics' => $topics,
+            'currentItem'  => $topic,
             'topicName' => ucfirst($topicName),
             'pageTitle' => ucfirst($topicName),
             'previousPost' => $previousPost,
@@ -210,6 +211,7 @@ class PostController extends Controller
         return view('filterpost', [
             'posts' => $posts,
             'frameworks' => $frameworks,
+             'currentItem'  => $framework,
             'frameworkName' => ucfirst($frameworkName),
             'pageTitle' => ucfirst($frameworkName),
             'previousPost' => $previousPost,

@@ -9,6 +9,7 @@ class Topic extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
     ];
     public function getRouteKeyName()
     {

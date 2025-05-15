@@ -9,6 +9,7 @@ class Framework extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
     ];
 
         public function getRouteKeyName()

@@ -12,7 +12,9 @@
 
         <div class="mb-4">
             <strong class="text-gray-700">Name:</strong>
-            <span class="text-gray-900">{{ $framework->name }}</span>
+            <span class="text-gray-900">{{ $framework->name }}</span><br>
+            <strong class="text-gray-700">Descript:</strong>
+            <span class="text-gray-900">{{ strip_tags($framework->description) }}</span>
         </div>
 
         <a href="{{ route('frameworks.index') }}" class="text-white bg-gray-600 hover:bg-gray-700 px-4 py-2 rounded-md text-sm">Back to List</a>

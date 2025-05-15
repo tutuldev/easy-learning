@@ -27,11 +27,15 @@ class FrameworkController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:frameworks,name',
+            'description' => 'required|string',
+
         ]);
 
         Framework::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
+            'description'  => $request->description,
+
         ]);
 
         return redirect()->route('frameworks.index')
@@ -55,11 +59,15 @@ class FrameworkController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:frameworks,name,' . $framework->id,
+            'description' => 'required|string',
+
         ]);
 
         $framework->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
+            'description'  => $request->description,
+
         ]);
 
         return redirect()->route('frameworks.index')

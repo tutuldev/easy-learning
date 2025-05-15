@@ -24,11 +24,15 @@ class TopicController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:topics,name',
+            'description' => 'required|string',
+
         ]);
 
         Topic::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
+            'description'  => $request->description,
+
         ]);
 
         return redirect()->route('topics.index')
@@ -49,11 +53,15 @@ class TopicController extends Controller
     {
         $request->validate([
             'name' => 'required|string|unique:topics,name,' . $topic->id,
+            'description' => 'required|string',
+
         ]);
 
         $topic->update([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
+            'description'  => $request->description,
+
         ]);
 
         return redirect()->route('topics.index')
