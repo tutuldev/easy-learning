@@ -19,8 +19,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 1,
                 'structer_id' => 1,
-                'code' => '<p>Example of user authentication implementation.</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Html Structure',
@@ -30,8 +32,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 1,
                 'structer_id' => 1,
-                'code' => '<p>&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;/body&gt;&lt;/html&gt;</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'HTML Tags Overview',
@@ -41,8 +45,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 1,
                 'structer_id' => 1,
-                'code' => '<p>&lt;h1&gt;Heading&lt;/h1&gt;&lt;p&gt;Paragraph&lt;/p&gt;</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'CSS Basics',
@@ -52,8 +58,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 2,
                 'structer_id' => 1,
-                'code' => '<p>body { background-color: lightblue; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'CSS Structure',
@@ -63,8 +71,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 2,
                 'structer_id' => 1,
-                'code' => '<p>selector { property: value; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'CSS All Properties',
@@ -74,8 +84,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 2,
                 'structer_id' => 1,
-                'code' => '<p>color, background-color, margin, padding</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'JavaScript Overview',
@@ -85,8 +97,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 3,
                 'structer_id' => 1,
-                'code' => '<p>console.log("Hello World");</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'JavaScript Structure',
@@ -96,8 +110,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 3,
                 'structer_id' => 1,
-                'code' => '<p>function greet() { alert("Hi!"); }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'JavaScript How to Use',
@@ -107,8 +123,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 3,
                 'structer_id' => 1,
-                'code' => '<p>&lt;script&gt;alert("Hello");&lt;/script&gt;</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'PHP Introduction',
@@ -118,8 +136,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 4,
                 'structer_id' => 1,
-                'code' => '<p>&lt;?php echo "Hello World"; ?&gt;</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Simple PHP Structure',
@@ -129,8 +149,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 4,
                 'structer_id' => 1,
-                'code' => '<p>&lt;?php // PHP code here ?&gt;</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Learn PHP with OOP',
@@ -140,8 +162,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 4,
                 'structer_id' => 2,
-                'code' => '<p>class Car { public $color; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'PHP Functions',
@@ -151,8 +175,10 @@ class PostSeeder extends Seeder
                 'framework_id' => null,
                 'topic_id' => 4,
                 'structer_id' => 1,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Django intro',
@@ -160,10 +186,12 @@ class PostSeeder extends Seeder
                 'description' => 'Understanding PHP functions and their uses.',
                 'category_id' => 1,
                 'framework_id' => 4,
-                'topic_id' => 4,
+                'topic_id' => 5,
                 'structer_id' => 9,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Django how to use',
@@ -171,10 +199,12 @@ class PostSeeder extends Seeder
                 'description' => 'Understanding PHP functions and their uses.',
                 'category_id' => 1,
                 'framework_id' => 4,
-                'topic_id' => 4,
+                'topic_id' => 5,
                 'structer_id' => 9,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Django property',
@@ -182,10 +212,12 @@ class PostSeeder extends Seeder
                 'description' => 'Understanding PHP functions and their uses.',
                 'category_id' => 1,
                 'framework_id' => 4,
-                'topic_id' => 4,
+                'topic_id' => 5,
                 'structer_id' => 9,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Laravel Intro',
@@ -195,8 +227,10 @@ class PostSeeder extends Seeder
                 'framework_id' => 6,
                 'topic_id' => 4,
                 'structer_id' => 9,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Laravel how to use',
@@ -206,8 +240,10 @@ class PostSeeder extends Seeder
                 'framework_id' => 6,
                 'topic_id' => 4,
                 'structer_id' => 9,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
+
             ],
             [
                 'title' => 'Laravel structer',
@@ -217,8 +253,9 @@ class PostSeeder extends Seeder
                 'framework_id' => 6,
                 'topic_id' => 4,
                 'structer_id' => 9,
-                'code' => '<p>function greet() { return "Hello"; }</p>',
-                'image' => null,
+                'codes' => ['<p>Example of user authentication implementation.</p>'],
+                'code_titles' => ['Authentication Code'],
+                'images' => [],
             ],
         ];
 

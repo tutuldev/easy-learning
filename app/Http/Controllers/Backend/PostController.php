@@ -9,6 +9,7 @@ use App\Models\Framework;
 use App\Models\Structer;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -30,36 +31,46 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title'       => 'required|string|max:25',
-            'description' => 'required|string',
-            'category'    => 'required|exists:categories,id',
-            'framework'   => 'nullable|exists:frameworks,id',
-            'topic'       => 'required|exists:topics,id',
-            'structer'    => 'required|exists:structers,id',
-            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+  public function store(Request $request)
+{
+    $request->validate([
+        'title'        => 'required|string|max:25',
+        'description'  => 'required|string',
+        'category'     => 'required|exists:categories,id',
+        'framework'    => 'nullable|exists:frameworks,id',
+        'topic'        => 'required|exists:topics,id',
+        'structer'     => 'required|exists:structers,id',
+        'code_titles'  => 'nullable|array',
+        'code_titles.*'=> 'nullable|string|max:50',
+        'codes'        => 'nullable|array',
+        'codes.*'      => 'nullable|string',
+        'images.*'     => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
 
-        $imagePath = $request->hasFile('image')
-            ? $request->file('image')->store('uploads/posts', 'public')
-            : null;
-
-        Post::create([
-            'title'        => $request->title,
-            'slug'         => Str::slug($request->title),
-            'description'  => $request->description,
-            'category_id'  => $request->category,
-            'framework_id' => $request->framework ?? null,
-            'topic_id'     => $request->topic,
-            'structer_id'  => $request->structer,
-            'code'         => $request->code,
-            'image'        => $imagePath,
-        ]);
-
-        return redirect()->route('posts.index')->with('status', 'Post created successfully.');
+    // multiple image upload
+    $imagePaths = [];
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $img) {
+            $imagePaths[] = $img->store('uploads/posts', 'public');
+        }
     }
+
+    Post::create([
+        'title'        => $request->title,
+        'slug'         => Str::slug($request->title),
+        'description'  => $request->description,
+        'category_id'  => $request->category,
+        'framework_id' => $request->framework,
+        'topic_id'     => $request->topic,
+        'structer_id'  => $request->structer,
+        'code_titles'  => $request->code_titles ?? [],
+        'codes'        => $request->codes       ?? [],
+        'images'       => $imagePaths,
+    ]);
+
+    return redirect()->route('posts.index')->with('status', 'Post created successfully.');
+}
+
 
     public function show(Post $post)
     {
@@ -68,6 +79,8 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
+
+
         return view('posts.edit', [
             'post'       => $post,
             'categories' => Category::all(),
@@ -77,36 +90,64 @@ class PostController extends Controller
         ]);
     }
 
-    public function update(Request $request, Post $post)
-    {
-        $request->validate([
-            'title'       => 'required|string|max:25',
-            'description' => 'required|string',
-            'category'    => 'required|exists:categories,id',
-            'framework'   => 'nullable|exists:frameworks,id',
-            'topic'       => 'required|exists:topics,id',
-            'structer'    => 'required|exists:structers,id',
-            'image'       => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-        ]);
+public function update(Request $request, Post $post)
+{
+    $request->validate([
+        'title'         => 'required|string|max:25',
+        'description'   => 'required|string',
+        'category'      => 'required|exists:categories,id',
+        'framework'     => 'nullable|exists:frameworks,id',
+        'topic'         => 'required|exists:topics,id',
+        'structer'      => 'required|exists:structers,id',
+        'code_titles'   => 'nullable|array',
+        'code_titles.*' => 'nullable|string|max:50',
+        'codes'         => 'nullable|array',
+        'codes.*'       => 'nullable|string',
+        'images.*'      => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+        'remove_images' => 'nullable|array',
+    ]);
 
-        $imagePath = $request->hasFile('image')
-            ? $request->file('image')->store('uploads/posts', 'public')
-            : $post->image;
+    // পুরোনো ইমেজ
+    $currentImages = $post->images ?? [];
 
-        $post->update([
-            'title'        => $request->title,
-            'slug'         => Str::slug($request->title),
-            'description'  => $request->description,
-            'category_id'  => $request->category,
-            'framework_id' => $request->framework ?? null,
-            'topic_id'     => $request->topic,
-            'structer_id'  => $request->structer,
-            'code'         => $request->code,
-            'image'        => $imagePath,
-        ]);
+    // 🗑️ remove_images থেকে যেগুলো আসছে, সেগুলো মুছে ফেলুন
+    $removeList = $request->remove_images ?? [];
 
-        return redirect()->route('posts.index')->with('status', 'Post updated successfully.');
+    foreach ($removeList as $delPath) {
+        if (in_array($delPath, $currentImages)) {
+            if (Storage::disk('public')->exists($delPath)) {
+                Storage::disk('public')->delete($delPath);
+            }
+            $currentImages = array_filter($currentImages, fn($img) => $img !== $delPath);
+        }
     }
+
+    // 📥 নতুন ইমেজ এড করুন
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $img) {
+            $path = $img->store('uploads/posts', 'public');
+            $currentImages[] = $path;
+        }
+    }
+
+    // 🔄 Post আপডেট
+    $post->update([
+        'title'         => $request->title,
+        'slug'          => Str::slug($request->title),
+        'description'   => $request->description,
+        'category_id'   => $request->category,
+        'framework_id'  => $request->framework,
+        'topic_id'      => $request->topic,
+        'structer_id'   => $request->structer,
+        'code_titles'   => $request->code_titles ?? [],
+        'codes'         => $request->codes ?? [],
+        'images'        => array_values($currentImages), // রি-ইনডেক্সড
+    ]);
+
+    return redirect()->route('posts.index')->with('status', 'Post updated successfully.');
+}
+
+
 
     public function destroy(Post $post)
     {

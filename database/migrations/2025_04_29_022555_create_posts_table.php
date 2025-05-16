@@ -19,8 +19,9 @@ return new class extends Migration
             $table->foreignId('topic_id')->constrained('topics')->onDelete('cascade');
             $table->foreignId('structer_id')->constrained('structers')->onDelete('cascade');
 
-            $table->text('code')->nullable();
-            $table->string('image')->nullable();
+            $table->json('code_titles')->nullable();
+            $table->json('codes')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

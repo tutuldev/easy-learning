@@ -10,14 +10,20 @@ class Post extends Model
         'title',
         'slug',
         'description',
-        'code',
-        'image',
+        'codes',
+        'code_titles',
+        'images',
         'category_id',
         'framework_id',
         'topic_id',
         'structer_id',
     ];
 
+    protected $casts = [
+    'images' => 'array',
+    'codes' => 'array',
+    'code_titles' => 'array',
+];
     public function getRouteKeyName()
     {
         return 'slug';
