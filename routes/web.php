@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\StructerController;
 use App\Http\Controllers\Backend\TopicController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SearchController;
 use App\Models\Structer;
 use Illuminate\Support\Facades\Route;
 
@@ -42,6 +43,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('admin.posts.category');
     Route::get('/admin/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('admin.posts.structer');
+
+    // search
+    Route::get('/search', [SearchController::class, 'index']);
+
 
 });
 

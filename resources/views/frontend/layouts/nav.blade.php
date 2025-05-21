@@ -161,27 +161,27 @@
                      </ul>
                  </div>
 
-                 <div class="relative  sm:ml-5 hidden">
-                     <input type="text" placeholder="Search..."
-                         class="w-48 xl:w-full h-10 px-4 pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                     <button class="absolute inset-y-0 right-3 flex items-center">
-                         <span class="material-symbols-outlined text-gray-500 text-xl cursor-pointer">search</span>
-                     </button>
-                 </div>
-                 {{-- dark mood  --}}
-                 <div class="dark mood ml-5 hidden">
-                     <span class="material-symbols-outlined cursor-pointer hover:text-green-500">brightness_6</span>
-                 </div>
 
              </div>
                <div class="flex items-center">
-                  <div class="relative  sm:ml-5">
-                     <input type="text" placeholder="Search..."
-                         class="w-48 xl:w-full h-10 px-4 pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500">
-                     <button class="absolute inset-y-0 right-3 flex items-center">
-                         <span class="material-symbols-outlined text-gray-500 text-xl cursor-pointer">search</span>
-                     </button>
-                 </div>
+               <div class="relative sm:ml-5">
+            <!-- সার্চ ইনপুট -->
+            <input type="text" id="searchInput"
+                placeholder="Search..."
+                class="w-48 xl:w-full h-10 px-4 pr-12 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-green-500" />
+
+            <!-- সার্চ বাটন -->
+            <button class="absolute inset-y-0 right-3 flex items-center">
+                <span class="material-symbols-outlined text-gray-500 text-xl cursor-pointer">search</span>
+            </button>
+
+            <!-- রেজাল্ট ড্রপডাউন -->
+            <div id="searchDropdown"
+                class="absolute w-full mt-2 bg-white border border-gray-300 rounded-md shadow-md z-50 max-h-[300px] overflow-y-auto hidden">
+                <!-- রেজাল্ট এখানে যাবে -->
+            </div>
+        </div>
+
                  {{-- dark mood  --}}
                  <div class="dark mood ml-5 mt-2">
                      <span class="material-symbols-outlined cursor-pointer hover:text-green-500">brightness_6</span>
@@ -336,6 +336,56 @@
              if (personDropdown) personDropdown.classList.add('hidden');
              if (menuDropdown) menuDropdown.classList.add('hidden');
          });
+
+        //  search start
+
+const input = document.getElementById('searchInput');
+const resultBox = document.getElementById('searchDropdown');
+
+input.addEventListener('input', function () {
+    const query = this.value.trim();
+
+    if (query.length === 0) {
+        resultBox.innerHTML = '';
+        resultBox.classList.add('hidden');
+        return;
+    }
+
+    fetch(`/search?q=${encodeURIComponent(query)}`)
+        .then(res => res.json())
+        .then(data => {
+            let html = '';
+
+            if (data.topics.length === 0 && data.frameworks.length === 0) {
+                html = `<div class="px-4 py-2 text-gray-500">No Result Found</div>`;
+            } else {
+                data.topics.forEach(item => {
+                    html += `<a href="/posts/topic/${item.name}"
+                        class="block px-4 py-2 hover:bg-green-100 text-sm text-gray-800">
+                        ${item.name} Tutorial <span class="text-xs text-gray-400">(Topic)</span>
+                    </a>`;
+                });
+
+                data.frameworks.forEach(item => {
+                    html += `<a href="/posts/framework/${item.name}"
+                        class="block px-4 py-2 hover:bg-green-100 text-sm text-gray-800">
+                        ${item.name} Tutorial<span class="text-xs text-gray-400">(Framework)</span>
+                    </a>`;
+                });
+            }
+
+            resultBox.innerHTML = html;
+            resultBox.classList.remove('hidden');
+        });
+});
+
+// ইনপুট বা ড্রপডাউনের বাইরে ক্লিক করলে লুকিয়ে যাবে
+document.addEventListener('click', function (e) {
+    if (!input.contains(e.target) && !resultBox.contains(e.target)) {
+        resultBox.classList.add('hidden');
+    }
+});
+        //  search end
      </script>
  @endpush
 
