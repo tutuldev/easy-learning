@@ -34,12 +34,7 @@
     @yield('content')
 
     <!-- Footer -->
-    <footer class="p-4 mt-[24rem] z-50 bg-black py-36 text-lg">
-        <div class=" container mx-auto flex justify-center text-sm text-gray-400 flex-col items-center">
-            <h1>This is Footer</h1>
-        &copy; 2025 All rights reserved.
-        </div>
-    </footer>
+     @include('frontend.layouts.footer')
 
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
