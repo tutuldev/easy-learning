@@ -5,27 +5,54 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Topic;
 use App\Models\Framework;
+use App\Models\Post;
 
 class SearchController extends Controller
 {
-    public function index(Request $request)
+    public function searchAll(Request $request)
     {
-        $q = $request->input('q');
+        $q = trim($request->input('q'));
 
-        // যদি কোনো ইনপুট না দেয়, খালি array ফেরত দাও
-        if (!$q) {
+        if ($q === '') {
             return response()->json([
                 'topics' => [],
                 'frameworks' => [],
+                'posts' => [],
             ]);
         }
 
-        $topics = Topic::where('name', 'like', '%' . $q . '%')->get();
-        $frameworks = Framework::where('name', 'like', '%' . $q . '%')->get();
+        // Topic গুলোর জন্য
+        $topics = Topic::select('id', 'name')
+            ->where('name', 'like', "%{$q}%")
+            ->orderBy('name')
+            ->get();
+
+        // Framework গুলোর জন্য
+        $frameworks = Framework::select('id', 'name')
+            ->where('name', 'like', "%{$q}%")
+            ->orderBy('name')
+            ->get();
+
+        // Post গুলোর জন্য — সাথে slug, topic/framework নাম এবং context পাঠানো হচ্ছে
+        $posts = Post::select('id', 'title', 'slug', 'topic_id', 'framework_id')
+            ->with(['topic:id,name', 'framework:id,name'])
+            ->where('title', 'like', "%{$q}%")
+            ->orderBy('title')
+            ->limit(20)
+            ->get()
+            ->map(function ($post) {
+                return [
+                    'title' => $post->title,
+                    'slug' => $post->slug,
+                    'context' => $post->framework ? 'framework' : 'topic',
+                    'name' => $post->framework ? $post->framework->name : $post->topic->name,
+                ];
+            });
 
         return response()->json([
             'topics' => $topics,
             'frameworks' => $frameworks,
+            'posts' => $posts,
         ]);
     }
 }

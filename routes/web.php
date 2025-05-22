@@ -45,7 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('admin.posts.structer');
 
     // search
-    Route::get('/search', [SearchController::class, 'index']);
+    Route::get('/search/all', [SearchController::class, 'searchAll']);
+
 
 
 });

@@ -351,27 +351,35 @@ input.addEventListener('input', function () {
         return;
     }
 
-    fetch(`/search?q=${encodeURIComponent(query)}`)
+    fetch(`/search/all?q=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
             let html = '';
 
-            if (data.topics.length === 0 && data.frameworks.length === 0) {
-                html = `<div class="px-4 py-2 text-gray-500">No Result Found</div>`;
-            } else {
-                data.topics.forEach(item => {
-                    html += `<a href="/posts/topic/${item.name}"
-                        class="block px-4 py-2 hover:bg-green-100 text-sm text-gray-800">
-                        ${item.name} Tutorial <span class="text-xs text-gray-400">(Topic)</span>
-                    </a>`;
-                });
+            if (data.topics.length) {
+                html += data.topics.map(t =>
+                    `<a href="/posts/topic/${t.name}" class="block px-4 py-2 hover:bg-green-100">${t.name}<span class="text-xs text-gray-400">(Topic)</span></a>`
+                ).join('');
+            }
 
-                data.frameworks.forEach(item => {
-                    html += `<a href="/posts/framework/${item.name}"
-                        class="block px-4 py-2 hover:bg-green-100 text-sm text-gray-800">
-                        ${item.name} Tutorial<span class="text-xs text-gray-400">(Framework)</span>
-                    </a>`;
-                });
+            if (data.frameworks.length) {
+                html += data.frameworks.map(f =>
+                    `<a href="/posts/framework/${f.name}" class="block px-4 py-2 hover:bg-green-100">${f.name}<span class="text-xs text-gray-400">(Framework)</span></a>`
+                ).join('');
+            }
+
+          if (data.posts.length) {
+                html += data.posts.map(p => {
+                    const url = p.context === 'framework'
+                        ? `/posts/framework/${p.name}/${p.slug}`
+                        : `/posts/topic/${p.name}/${p.slug}`;
+                    return `<a href="${url}" class="block px-4 py-2 hover:bg-gray-100">${p.title}</a>`;
+                }).join('');
+            }
+
+
+            if (!data.topics.length && !data.frameworks.length && !data.posts.length) {
+                html = `<div class="px-4 py-2 text-gray-500">No Result Found</div>`;
             }
 
             resultBox.innerHTML = html;
@@ -379,12 +387,22 @@ input.addEventListener('input', function () {
         });
 });
 
-// ইনপুট বা ড্রপডাউনের বাইরে ক্লিক করলে লুকিয়ে যাবে
+// ইনপুটে ক্লিক করলে — যদি টেক্সট থাকে তাহলে resultBox দেখাবে
+input.addEventListener('click', function () {
+    if (input.value.trim() !== '') {
+        resultBox.classList.remove('hidden');
+    } else {
+        resultBox.classList.add('hidden');
+    }
+});
+
+// বাইরে ক্লিক করলে resultBox হাইড হবে
 document.addEventListener('click', function (e) {
     if (!input.contains(e.target) && !resultBox.contains(e.target)) {
         resultBox.classList.add('hidden');
     }
 });
+
         //  search end
      </script>
  @endpush

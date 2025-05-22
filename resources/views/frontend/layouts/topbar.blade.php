@@ -2,11 +2,16 @@
  <section class="bg-[#261F1E] fixed top-14 left-0 w-full z-40 ">
     {{-- button and swiper js container  --}}
      <div class="flex max-w-screen-2xl w-full mx-auto items-center ">
-         <div id="menu-btn" class="menu px-4 h-full flex md:hidden items-center ">
+
+         @if (request()->is('/'))
+         @else
+             <div id="menu-btn" class="menu px-4 h-full flex md:hidden items-center ">
 
              <span
                  class="material-symbols-outlined text-2xl   text-white cursor-pointer hover:text-green-500 transition ">menu</span>
          </div>
+         @endif
+
          {{-- swiper js container  start  --}}
          <div class="swiper  cursor-pointer ">
              <div class="swiper-wrapper py-2">

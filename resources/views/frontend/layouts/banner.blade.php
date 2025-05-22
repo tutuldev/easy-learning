@@ -27,7 +27,7 @@
 {{-- banner section end --}}
 @push('scripts')
 <script>
-    const input2 = document.getElementById("searchInput2");
+const input2 = document.getElementById("searchInput2");
 const resultBox2 = document.getElementById("searchResults2");
 
 input2.addEventListener("input", async function () {
@@ -38,26 +38,55 @@ input2.addEventListener("input", async function () {
         return;
     }
 
-    const res = await fetch(`/search?q=${encodeURIComponent(query)}`);
+    const res = await fetch(`/search/all?q=${encodeURIComponent(query)}`);
     const data = await res.json();
 
-    if (data.topics.length === 0 && data.frameworks.length === 0) {
-        resultBox2.innerHTML = `<p class="px-4 py-2 text-gray-500 text-sm">No Result Found</p>`;
-        resultBox2.classList.remove('hidden');
-        return;
+    let html = '';
+
+    if (data.topics.length) {
+        data.topics.forEach(item => {
+            html += `<a href="/posts/topic/${item.name}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-green-100">${item.name} Tutorial <span class="text-xs text-gray-400">(Topic)</span></a>`;
+        });
     }
 
-    let html = '';
-    data.topics.forEach(item => {
-        html += `<a href="/posts/topic/${item.name}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-green-100">${item.name} Tutorial<span class="text-xs text-gray-400">(Topic)</span></a>`;
-    });
-    data.frameworks.forEach(item => {
-        html += `<a href="/posts/framework/${item.name}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-green-100">${item.name} Tutorial<span class="text-xs text-gray-400">(Framework)</span></a>`;
-    });
+    if (data.frameworks.length) {
+        data.frameworks.forEach(item => {
+            html += `<a href="/posts/framework/${item.name}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-green-100">${item.name} Tutorial <span class="text-xs text-gray-400">(Framework)</span></a>`;
+        });
+    }
+
+    if (data.posts.length) {
+        data.posts.forEach(post => {
+            const url = post.context === 'framework'
+                ? `/posts/framework/${post.name}/${post.slug}`
+                : `/posts/topic/${post.name}/${post.slug}`;
+            html += `<a href="${url}" class="block px-4 py-2 text-sm text-gray-800 hover:bg-green-100">${post.title} </a>`;
+        });
+    }
+
+    if (!data.topics.length && !data.frameworks.length && !data.posts.length) {
+        html = `<p class="px-4 py-2 text-gray-500 text-sm">No Result Found</p>`;
+    }
 
     resultBox2.innerHTML = html;
     resultBox2.classList.remove('hidden');
 });
 
+// ইনপুটে ক্লিক করলে — কিছু থাকলে দেখাবে
+input2.addEventListener('click', function () {
+    if (input2.value.trim() !== '') {
+        resultBox2.classList.remove('hidden');
+    } else {
+        resultBox2.classList.add('hidden');
+    }
+});
+
+// বাইরে ক্লিক করলে resultBox হাইড হবে
+document.addEventListener('click', function (e) {
+    if (!input2.contains(e.target) && !resultBox2.contains(e.target)) {
+        resultBox2.classList.add('hidden');
+    }
+});
 </script>
+
 @endpush
