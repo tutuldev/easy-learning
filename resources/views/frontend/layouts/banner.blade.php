@@ -87,6 +87,7 @@ document.addEventListener('click', function (e) {
         resultBox2.classList.add('hidden');
     }
 });
+
 </script>
 
 @endpush

@@ -3,9 +3,12 @@
      <nav class="w-full max-w-screen-2xl mx-auto  flex ">
          <div class="flex w-full justify-between">
              <div class="flex bg-amber-2000 items-center">
-                 <div class="logo">
-                     <img src="{{ asset('image/logo.png') }}" alt="Logo" height="50px" width="60px">
-                 </div>
+                <a href="{{ url('/') }}">
+    <div class="logo">
+        <img src="{{ asset('image/logo.png') }}" alt="Logo" height="50px" width="60px">
+    </div>
+</a>
+
                  <ul class="space-x-3 2xl:space-x-5 md:flex hidden ">
                      <li class="relative group hover:text-green-500">
                          Tutorials

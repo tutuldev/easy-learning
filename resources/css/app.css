@@ -6,6 +6,10 @@
     --overlap-height: 0px; /* Dynamic value for height adjustment */
   }
 
-  #sidebar {
-    height: calc(100vh - (112px + var(--overlap-height))); /* Dynamic height */
+  #sidebar-dash {
+    height: calc(100vh - (100px + var(--overlap-height))); /* Dynamic height */
+  }
+
+   #sidebar {
+    height: calc(100vh - (92px + var(--overlap-height))); /* Dynamic height */
   }

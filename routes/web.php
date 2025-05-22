@@ -32,24 +32,21 @@ Route::middleware('auth')->group(function () {
     Route::resource('structers', StructerController::class);
     Route::resource('posts', PostController::class);
 
+
     Route::get('/admin/posts/topic/{topic}', [PostController::class, 'filterByTopicBack'])->name('admin.posts.topic');
+    Route::get('/admin/posts/framework/{framework}', [PostController::class, 'filterByFramework'])->name('admin.posts.framework');
+    Route::get('/admin/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('admin.posts.category');
+    Route::get('/admin/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('admin.posts.structer');
+});
+
     Route::get('/posts/topic/{topic}/{slug}', [PostController::class, 'showFilteredPost'])->name('posts.topic.show');
     Route::get('/posts/topic/{topic}', [PostController::class, 'filterByTopicFront'])->name('posts.topic');
-
-    Route::get('/admin/posts/framework/{framework}', [PostController::class, 'filterByFramework'])->name('admin.posts.framework');
     Route::get('/posts/framework/{framework}/{slug}', [PostController::class, 'showFilteredPostByFramework'])->name('posts.framework.show');
     Route::get('/posts/framework/{framework}', [PostController::class, 'filterByFrameworkFront'])->name('posts.framework');
 
 
-    Route::get('/admin/posts/category/{category}', [PostController::class, 'filterByCategory'])->name('admin.posts.category');
-    Route::get('/admin/posts/structer/{structer}', [PostController::class, 'filterByStructer'])->name('admin.posts.structer');
-
-    // search
-    Route::get('/search/all', [SearchController::class, 'searchAll']);
-
-
-
-});
+// search
+Route::get('/search/all', [SearchController::class, 'searchAll']);
 
 
 

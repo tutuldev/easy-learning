@@ -1,8 +1,8 @@
 <!-- Sidebar Wrapper -->
 <div class="md:w-64">
     <!-- Sidebar -->
-    <aside id="sidebar"
-        class="fixed top-28 md:left-auto left-0 z-20 w-64 bg-white shadow-md overflow-y-auto transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0">
+    <aside id="sidebar-dash"
+        class="fixed top-[100px] md:left-auto left-0 z-20 w-64 bg-white shadow-md overflow-y-auto transform -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0">
 
         <!-- Close Button (Mobile only) -->
         <div class="absolute top-1 right-4 z-50 md:hidden">

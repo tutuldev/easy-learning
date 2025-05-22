@@ -8,7 +8,7 @@
     <div class="mx-auto flex w-full max-w-screen-2xl">
         @include('frontend.layouts.sidebar')
         <!--Main Content -->
-        <main class="flex-1  mt-32 px-5">
+        <main class="flex-1  mt-32 px-2 sm:px-5">
             <h2 class="text-3xl md:text-5xl  my-10  px-5">{{ $pageTitle }} Tutorial </h2>
             <div class="flex justify-between  px-5">
                 @if ($previousPost)

@@ -48,7 +48,7 @@
     <!-- Scripts -->
     <script>
         const btn = document.getElementById('menu-btn');
-        const sidebar = document.getElementById('sidebar');
+        const sidebar = document.getElementById('sidebar-dash');
 
         // Toggle sidebar on button click
         btn.addEventListener('click', (e) => {
@@ -76,7 +76,7 @@
 
         // sidebar close by cross button
         function hideSidebar() {
-            const sidebar = document.getElementById('sidebar');
+            const sidebar = document.getElementById('sidebar-dash');
             sidebar.classList.add('-translate-x-full');
         }
 
@@ -104,7 +104,7 @@
         // for layout
       function updateSidebarHeight() {
       const footer = document.querySelector('footer');
-      const sidebar = document.querySelector('#sidebar');
+      const sidebar = document.querySelector('#sidebar-dash');
       const footerRect = footer.getBoundingClientRect();
       const windowHeight = window.innerHeight;
 

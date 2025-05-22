@@ -2,16 +2,16 @@
 @section('title', $post->title ?? 'Topic')
 
 @section('content')
-    <div class="mx-auto flex container">
+    <div class="mx-auto flex w-full max-w-screen-2xl">
         @include('frontend.layouts.sidebar', ['posts' => $posts, 'pageTitle' => $pageTitle])
 
         <!-- Main Content -->
-        <main class="flex-1 px-4 md:px-8 max-w-6xl mx-auto mt-32 text-gray-800">
+        <main class="flex-1  mx-auto mt-32 text-gray-800 px-2 sm:px-5">
             <!-- Title -->
             <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-8 text-center">{{ $post->title }}</h1>
 
             <!-- Prev/Next Navigation -->
-            <div class="flex justify-between items-center mb-12">
+            <div class="flex justify-between items-center mb-12 px-5">
                 @if ($previousPost && $previousPost->slug)
                     <a href="{{ $context === 'framework'
                         ? route('posts.framework.show', [$previousPost->framework->name, $previousPost->slug])
@@ -51,7 +51,7 @@
                             <div id="codeContainer{{ $index }}" class="bg-white overflow-visible ">
 
                                 {{-- Sticky Header --}}
-                                <div class="sticky top-[95px] left-0 w-full z-20 flex justify-between items-center bg-gray-900 shadow-lg text-white px-4 py-2"
+                                <div class="sticky top-[95px] left-0 w-full z-10 flex justify-between items-center bg-gray-900 shadow-l rounded-t-xl text-white px-4 py-2"
                                     style="will-change: transform;">
                                     <span class="font-medium">{{ $codeTitle }}</span>
 
@@ -69,7 +69,8 @@
                                 </div>
 
                                 {{-- Code Area --}}
-                                <div class="bg-[#0D1117] text-gray-100 font-mono text-sm overflow-auto">
+                                <div class="bg-[#0D1117] text-gray-100 font-mono text-sm overflow-auto rounded-b-xl
+">
                                     <pre class="whitespace-pre-wrap break-words px-4 py-2">
                                         <code id="codeBlock{{ $index }}" class="w-full ">{{ $post->codes[$index] ?? '' }}</code>
                                     </pre>
