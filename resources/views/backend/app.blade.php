@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="bg-[#F5F6F7] ">
+<body class=" ">
     <!-- header -->
     <header class=" sticky top-0 left-0 right-0  z-50 h-[112px]">
         @include('backend.layouts.topbar')
@@ -34,12 +34,7 @@
         </main>
     </div>
       <!-- Footer -->
-  <footer class="p-4 mt-96 z-50 bg-black py-36 text-lg">
-    <div class=" container mx-auto flex justify-center text-sm text-gray-400 flex-col items-center">
-        <h1>This is Footer</h1>
-      &copy; 2025 All rights reserved.
-    </div>
-  </footer>
+   @include('frontend.layouts.footer')
 
     @stack('scripts')
     <!-- Swiper JS -->
