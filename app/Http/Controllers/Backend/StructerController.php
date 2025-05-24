@@ -11,7 +11,8 @@ class StructerController extends Controller
 {
     public function index()
     {
-        $structers = Structer::paginate(4);
+        $structers = Structer::withCount('posts')->paginate(4);
+
         return view('structers.all-structer', compact('structers'));
     }
 
@@ -37,6 +38,7 @@ class StructerController extends Controller
 
     public function show(Structer $structer)
     {
+         $structer->loadCount('posts');
         return view('structers.show', compact('structer'));
     }
 

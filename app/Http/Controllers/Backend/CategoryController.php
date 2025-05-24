@@ -12,7 +12,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::paginate(4);
+          $categories = Category::withCount('posts')->paginate(4);
         return view("categories.all-category", compact("categories"));
     }
 
@@ -38,9 +38,9 @@ class CategoryController extends Controller
                          ->with('status', 'New Category Added Successfully.');
     }
 
-
     public function show(Category $category)
     {
+        $category->loadCount('posts');//for count post with category
         return view('categories.show', compact('category'));
     }
 

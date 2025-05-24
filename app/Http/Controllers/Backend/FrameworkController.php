@@ -12,7 +12,7 @@ class FrameworkController extends Controller
 
     public function index()
     {
-        $frameworks = Framework::paginate(4);
+        $frameworks = Framework::withCount('posts')->paginate(4);
         return view("frameworks.all-framework", compact("frameworks"));
     }
 
@@ -45,6 +45,7 @@ class FrameworkController extends Controller
 
     public function show(Framework $framework)
     {
+         $framework->loadCount('posts');
         return view('frameworks.show', compact('framework'));
     }
 

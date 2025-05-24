@@ -5,12 +5,12 @@
 
 {{-- dashbord topbar  end--}}
 <div class="flex-1 dashbord-main pt-2">
-    <h3 class="text-xl pb-4 font-bold">Category details</h3>
+    <h3 class="text-xl pb-4 font-bold">Category details</h3> 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 ">
     @foreach($categories as $category)
         <a href="{{ route('admin.posts.category', $category->name) }}" class="block">
             <div class="bg-white rounded-lg p-6 shadow flex justify-between items-center">
-                <span>{{ $category->name }}2</span>
+                <span>{{ $category->name }}</span>
                 <span>post-{{ $category->posts_count }}</span>
             </div>
         </a>

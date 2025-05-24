@@ -1,12 +1,19 @@
 @extends('backend.app')
-@section('title', 'Edit Post')
+@section('title', 'Edit - ' . $post->title)
+
 
 @section('content')
 
-<h2 class="mt-16 text-2xl font-semibold">Edit Post</h2>
-<a href="{{ route('posts.index') }}" class="text-white px-2 py-1 text-sm rounded-md bg-green-600 hover:bg-green-700 my-2 inline-block">
-    <span class="material-symbols-outlined align-middle text-xs mx-2">arrow_back_ios</span>Back
-</a>
+  <div class="flex items-center justify-between mb-6">
+    <h2 class="text-2xl font-bold text-gray-800 flex items-center gap-2">
+      <span class="material-symbols-outlined text-blue-500">edit</span>
+      Edit Post
+    </h2>
+    <a href="javascript:history.back()" class="text-sm text-white bg-green-600 hover:bg-green-700 px-3 py-1 rounded-md flex items-center">
+      <span class="material-symbols-outlined text-xs mr-1">arrow_back_ios</span>
+      Back
+    </a>
+  </div>
 
 <form action="{{ route('posts.update', $post->slug) }}" method="POST" enctype="multipart/form-data" class="w-full bg-white p-6 rounded-lg shadow space-y-4">
     @csrf
@@ -172,7 +179,7 @@
     <!-- Submit -->
     <button type="submit"
             class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-200">
-        Update
+        Update Post
     </button>
 </form>
 

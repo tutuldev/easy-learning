@@ -77,7 +77,7 @@
             of all content. While using Easy to learn, you agree to have read and accepted our terms of use, cookie and privacy policy.
             </p>
             <p class="text-gray-600 mt-4">
-            &copy; 2025 by Refsnes Data. All Rights Reserved. Easy to learn is Powered by NirobIt.
+            &copy; 2025 by Refsnes Data. All Rights Reserved. Easy to learn is Powered by <a href="/dashboard">NirobIt</a>.
             </p>
         </div>
     </footer>

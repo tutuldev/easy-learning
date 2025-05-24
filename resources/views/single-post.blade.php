@@ -42,6 +42,16 @@
                 </ul>
             </section>
 
+                <!-- Description -->
+        @if(!empty($post->description))
+        <section class="mb-12 bg-white border border-gray-200 rounded-xl shadow-sm p-6">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-4">📄 Description</h2>
+            <div class="prose prose-slate max-w-none text-gray-800 leading-relaxed">
+                {!! $post->description !!}
+            </div>
+        </section>
+        @endif
+
             <!-- Code Blocks -->
             @if (!empty($post->code_titles) && !empty($post->codes))
                 <section class="mb-12">

@@ -11,7 +11,7 @@ class TopicController extends Controller
 {
     public function index()
     {
-        $topics = Topic::paginate(3);
+          $topics = Topic::withCount('posts')->paginate(4);
         return view("topics.all-topic", compact("topics"));
     }
 
@@ -41,6 +41,7 @@ class TopicController extends Controller
 
     public function show(Topic $topic)
     {
+         $topic->loadCount('posts');
         return view('topics.show', compact('topic'));
     }
 
