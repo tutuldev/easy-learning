@@ -36,6 +36,34 @@
     <!-- Footer -->
      @include('frontend.layouts.footer')
 
+     {{-- for sidebar layout  --}}
+     <script>
+           // for layout
+      function updateSidebarHeight() {
+      const footer = document.querySelector('footer');
+      const sidebar = document.querySelector('#sidebar');
+      const footerRect = footer.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      // Calculate overlap height if the footer is in the viewport
+      const overlapHeight = footerRect.top < windowHeight && footerRect.top > 0
+        ? Math.max(windowHeight - footerRect.top, 0)
+        : 0;
+
+      // Update the custom property for dynamic height adjustment
+      document.documentElement.style.setProperty('--overlap-height', `${overlapHeight}px`);
+    }
+
+    // Attach scroll and resize event listeners
+    window.addEventListener('scroll', updateSidebarHeight);
+    window.addEventListener('resize', updateSidebarHeight);
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', updateSidebarHeight);
+        // end layout js
+
+     </script>
+
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
@@ -90,29 +118,6 @@
             }
         }
 
-            // for layout
-      function updateSidebarHeight() {
-      const footer = document.querySelector('footer');
-      const sidebar = document.querySelector('#sidebar');
-      const footerRect = footer.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-
-      // Calculate overlap height if the footer is in the viewport
-      const overlapHeight = footerRect.top < windowHeight && footerRect.top > 0
-        ? Math.max(windowHeight - footerRect.top, 0)
-        : 0;
-
-      // Update the custom property for dynamic height adjustment
-      document.documentElement.style.setProperty('--overlap-height', `${overlapHeight}px`);
-    }
-
-    // Attach scroll and resize event listeners
-    window.addEventListener('scroll', updateSidebarHeight);
-    window.addEventListener('resize', updateSidebarHeight);
-
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', updateSidebarHeight);
-        // end layout js
 
 
         // for menu

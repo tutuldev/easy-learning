@@ -158,47 +158,40 @@ public function update(Request $request, Post $post)
        // filter in  backend start
       // Filter by Topic
     public function filterByTopicBack($topicName)
-    {
-        $posts = Post::whereHas('topic', function($query) use ($topicName) {
-            $query->where('name', $topicName);
-        })->get();
+{
+    $posts   = Post::whereHas('topic', fn($q)=>$q->where('name',$topicName))
+                   ->paginate(10);
+    $title   = $topicName;
+    $context = 'topic';
+    return view('posts.filterpost', compact('posts','title','context'));
+}
 
-        $title =  $topicName;
-        return view('posts.filterpost', compact('posts', 'title'));
-    }
+public function filterByCategory($categoryName)
+{
+    $posts   = Post::whereHas('category', fn($q)=>$q->where('name',$categoryName))
+                   ->paginate(10);
+    $title   = $categoryName;
+    $context = 'category';
+    return view('posts.filterpost', compact('posts','title','context'));
+}
 
-    // Filter by Category
-    public function filterByCategory($categoryName)
-    {
-        $posts = Post::whereHas('category', function($query) use ($categoryName) {
-            $query->where('name', $categoryName);
-        })->get();
+public function filterByStructer($structerName)
+{
+    $posts   = Post::whereHas('structer', fn($q)=>$q->where('name',$structerName))
+                   ->paginate(10);
+    $title   = $structerName;
+    $context = 'structer';
+    return view('posts.filterpost', compact('posts','title','context'));
+}
 
-        $title = $categoryName;
-        return view('posts.filterpost', compact('posts', 'title'));
-    }
-
-    // Filter by Structure
-    public function filterByStructer($structerName)
-    {
-        $posts = Post::whereHas('structer', function($query) use ($structerName) {
-            $query->where('name', $structerName);
-        })->get();
-
-        $title =  $structerName;
-        return view('posts.filterpost', compact('posts', 'title'));
-    }
-
-    // Filter by Framework
-    public function filterByFramework($frameworkName)
-    {
-        $posts = Post::whereHas('framework', function($query) use ($frameworkName) {
-            $query->where('name', $frameworkName);
-        })->get();
-
-        $title =  $frameworkName;
-        return view('posts.filterpost', compact('posts', 'title'));
-    }
+public function filterByFramework($frameworkName)
+{
+    $posts   = Post::whereHas('framework', fn($q)=>$q->where('name',$frameworkName))
+                   ->paginate(10);
+    $title   = $frameworkName;
+    $context = 'framework';
+    return view('posts.filterpost', compact('posts','title','context'));
+}
 
         // filter in  backend end
 
