@@ -26,7 +26,7 @@
     </header>
 
     <!-- Sidebar and Main Content Container -->
-    <div class="mx-auto flex container">
+    <div class="mx-auto flex max-w-screen-2xl">
         @include('backend.layouts.sidebar')
         <!--Main Content -->
         <main class="flex-1 px-4">
